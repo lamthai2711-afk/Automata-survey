@@ -23,16 +23,41 @@
   </script>
 
   <style>
-    /* Styling for checked radio cards */
+    /* Radio and checkbox card active selection styles */
     input[type="radio"]:checked + label,
     input[type="checkbox"]:checked + label {
       border-color: #2563eb;
       background-color: #eff6ff;
       color: #1d4ed8;
     }
+    
+    /* Smooth scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Floating Toast Animation */
+    .toast-enter {
+      transform: translateY(-20px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toast-enter-active {
+      transform: translateY(0);
+      opacity: 1;
+    }
   </style>
 </head>
 <body class="bg-slate-100 text-slate-800 min-h-screen py-6 px-3 sm:px-6 lg:px-8 font-sans antialiased">
+
+  <!-- Floating Toast Notification System (Replaces window.alert) -->
+  <div id="toastNotification" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 max-w-md w-full px-4 hidden">
+    <div id="toastBox" class="rounded-xl shadow-2xl p-4 flex items-center space-x-3 text-sm font-medium border">
+      <span id="toastIcon" class="text-xl">⚠️</span>
+      <p id="toastMessage" class="flex-1"></p>
+      <button type="button" onclick="hideToast()" class="text-slate-400 hover:text-slate-700 text-lg leading-none">&times;</button>
+    </div>
+  </div>
 
   <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
     
@@ -40,7 +65,7 @@
     <header class="bg-slate-900 text-white p-6 sm:p-8 border-b border-slate-800">
       <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
         <div class="inline-flex items-center px-3 py-1 bg-blue-600 text-xs font-semibold uppercase tracking-wider rounded-full text-white">
-          Formal Study Instrument &bull; 6 Sections
+          Formal Study Instrument &bull; Unified Single-Page Review
         </div>
         <div id="connectionTag" class="text-xs font-mono text-slate-400">
           Network Integrity: <span id="ipBadge" class="text-amber-400">Verifying...</span>
@@ -53,20 +78,33 @@
         Evaluating the Cognitive and Pedagogical Effects of Interactive Step-by-Step Automata Simulation on Formal Language Acquisition &bull; Target Duration: 40–45 minutes
       </p>
 
-      <!-- Section Progress Bar -->
+      <!-- Overall Completion Progress Bar -->
       <div class="mt-6 pt-4 border-t border-slate-800">
         <div class="flex items-center justify-between text-xs font-semibold text-slate-300 mb-2">
-          <span id="stepIndicatorLabel">Section 1 of 6: Informed Consent & Demographics</span>
-          <span id="stepPercentageLabel">16%</span>
+          <span id="progressStatusLabel">Survey Completion Progress</span>
+          <span id="progressPercentageLabel">0%</span>
         </div>
         <div class="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden">
-          <div id="progressBar" class="bg-blue-500 h-2.5 rounded-full transition-all duration-300" style="width: 16.6%;"></div>
+          <div id="progressBar" class="bg-blue-500 h-2.5 rounded-full transition-all duration-300" style="width: 0%;"></div>
         </div>
       </div>
     </header>
 
+    <!-- Quick Navigation Sub-Bar (Sticky for rapid jumping between sections) -->
+    <nav class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-slate-200 px-4 py-3 shadow-xs">
+      <div class="flex items-center space-x-2 overflow-x-auto text-xs font-semibold no-scrollbar">
+        <span class="text-slate-400 uppercase tracking-wider whitespace-nowrap pl-1">Jump to:</span>
+        <a href="#section-1" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition whitespace-nowrap">1. Consent & Demographics</a>
+        <a href="#section-2" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition whitespace-nowrap">2. Pre-Test</a>
+        <a href="#section-3" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition whitespace-nowrap">3. Intervention</a>
+        <a href="#section-4" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition whitespace-nowrap">4. Cognitive Load</a>
+        <a href="#section-5" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition whitespace-nowrap">5. Motivation (IMI)</a>
+        <a href="#section-6" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition whitespace-nowrap">6. Post-Test Assessment</a>
+      </div>
+    </nav>
+
     <!-- Master Form -->
-    <form id="surveyForm" class="p-6 sm:p-10 space-y-8" novalidate>
+    <form id="surveyForm" class="p-6 sm:p-10 space-y-12" novalidate>
       <!-- Hidden Audit Fields for Fraud Prevention & Verification -->
       <input type="hidden" name="ip_address" id="ip_address" value="pending" />
       <input type="hidden" name="user_agent" id="user_agent" value="" />
@@ -76,12 +114,12 @@
       <!-- ========================================================================= -->
       <!-- SECTION 1: INFORMED CONSENT & DEMOGRAPHIC INFORMATION                     -->
       <!-- ========================================================================= -->
-      <div class="survey-section space-y-8" id="section-1" data-section-index="1">
+      <section class="survey-section space-y-8 scroll-mt-20" id="section-1">
         <div class="border-b border-slate-200 pb-4">
           <div class="inline-block text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded mb-2">
             Section 1 of 6
           </div>
-          <h2 class="text-2xl font-bold text-slate-900">Informed Consent & Demographic Information</h2>
+          <h2 class="text-2xl font-bold text-slate-900">Section 1: Informed Consent & Demographic Information</h2>
           <p class="text-sm text-slate-500 mt-1">Please confirm your voluntary consent and provide basic academic background information.</p>
         </div>
 
@@ -120,7 +158,7 @@
             <input type="text" name="participant_id" id="participant_id" required
               placeholder="e.g., SZE_001 or auto-generated token"
               class="w-full px-4 py-2.5 rounded-lg border border-slate-300 font-mono text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white" />
-            <p class="text-xs text-slate-500 mt-1">Please enter the unique ID code assigned to you by the experimenter (e.g., SZE_001), or retain the system-generated hardware token.</p>
+            <p class="text-xs text-slate-500 mt-1">Unique assigned identifier (e.g., SZE_001) or auto-generated test token.</p>
           </div>
 
           <!-- Question 1.3: Chronological Age -->
@@ -265,19 +303,12 @@
             </label>
           </div>
         </div>
-
-        <!-- Navigation Button -->
-        <div class="pt-4 border-t border-slate-200 flex justify-end">
-          <button type="button" class="next-btn px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow transition">
-            Proceed to Section 2: Baseline Knowledge Pre-Test &rarr;
-          </button>
-        </div>
-      </div>
+      </section>
 
       <!-- ========================================================================= -->
       <!-- SECTION 2: BASELINE KNOWLEDGE PRE-TEST                                    -->
       <!-- ========================================================================= -->
-      <div class="survey-section space-y-8 hidden" id="section-2" data-section-index="2">
+      <section class="survey-section space-y-8 pt-8 border-t-2 border-slate-200 scroll-mt-20" id="section-2">
         <div class="border-b border-slate-200 pb-4">
           <div class="inline-block text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded mb-2">
             Section 2 of 6
@@ -293,7 +324,7 @@
           </div>
         </div>
 
-        <!-- Question 2.1 -->
+        <!-- Question 2.1 (Fixed: Removed accidental bold on option 4) -->
         <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
           <p class="font-medium text-slate-900 text-sm">
             <strong>Question 2.1 (Discrete Mathematics: Power Set):</strong> Let $A = \{q_0, q_1\}$ be a set containing 2 distinct state labels. What is the total number of elements in its power set $\mathcal{P}(A)$? <span class="text-red-500">*</span>
@@ -301,19 +332,19 @@
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm">
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="pretest_q1" value="2" required class="text-blue-600" />
-              <span class="ml-2 font-mono">2</span>
+              <span class="ml-2 font-mono text-slate-700">2</span>
             </label>
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="pretest_q1" value="3" required class="text-blue-600" />
-              <span class="ml-2 font-mono">3</span>
+              <span class="ml-2 font-mono text-slate-700">3</span>
             </label>
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="pretest_q1" value="4" required class="text-blue-600" />
-              <span class="ml-2 font-mono font-bold">4</span>
+              <span class="ml-2 font-mono text-slate-700">4</span>
             </label>
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="pretest_q1" value="8" required class="text-blue-600" />
-              <span class="ml-2 font-mono">8</span>
+              <span class="ml-2 font-mono text-slate-700">8</span>
             </label>
           </div>
         </div>
@@ -326,19 +357,19 @@
           <div class="space-y-2 text-sm">
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="pretest_q2" value="The finite input alphabet" required class="text-blue-600" />
-              <span class="ml-2.5">The finite input alphabet</span>
+              <span class="ml-2.5 text-slate-700">The finite input alphabet</span>
             </label>
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="pretest_q2" value="The state transition function" required class="text-blue-600" />
-              <span class="ml-2.5">The state transition function</span>
+              <span class="ml-2.5 text-slate-700">The state transition function</span>
             </label>
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="pretest_q2" value="The set of accepting (final) states" required class="text-blue-600" />
-              <span class="ml-2.5">The set of accepting (final) states</span>
+              <span class="ml-2.5 text-slate-700">The set of accepting (final) states</span>
             </label>
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="pretest_q2" value="The initial starting state" required class="text-blue-600" />
-              <span class="ml-2.5">The initial starting state</span>
+              <span class="ml-2.5 text-slate-700">The initial starting state</span>
             </label>
           </div>
         </div>
@@ -368,7 +399,7 @@
           </div>
         </div>
 
-        <!-- Question 2.4 -->
+        <!-- Question 2.4 (Fixed: Removed accidental bold on option 001) -->
         <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
           <p class="font-medium text-slate-900 text-sm">
             <strong>Question 2.4 (Automaton Execution Path):</strong> Consider an automaton with state A (start) and state B (accept). Reading '0' loops on A; reading '1' transitions from A to B. From B, reading either '0' or '1' transitions back to A. Which of the following strings is accepted? <span class="text-red-500">*</span>
@@ -376,24 +407,24 @@
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm">
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="pretest_q4" value="000" required class="text-blue-600" />
-              <span class="ml-2 font-mono">000</span>
+              <span class="ml-2 font-mono text-slate-700">000</span>
             </label>
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="pretest_q4" value="010" required class="text-blue-600" />
-              <span class="ml-2 font-mono">010</span>
+              <span class="ml-2 font-mono text-slate-700">010</span>
             </label>
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="pretest_q4" value="001" required class="text-blue-600" />
-              <span class="ml-2 font-mono font-bold">001</span>
+              <span class="ml-2 font-mono text-slate-700">001</span>
             </label>
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="pretest_q4" value="111" required class="text-blue-600" />
-              <span class="ml-2 font-mono">111</span>
+              <span class="ml-2 font-mono text-slate-700">111</span>
             </label>
           </div>
         </div>
 
-        <!-- Question 2.5 -->
+        <!-- Question 2.5 (Fixed: Removed accidental bold on option {q0, q1, q2}) -->
         <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
           <p class="font-medium text-slate-900 text-sm">
             <strong>Question 2.5 (Empty Closure Basic Reachability):</strong> In an NFA, suppose there is an $\varepsilon$-transition from state $q_0$ to $q_1$, and an $\varepsilon$-transition from state $q_1$ to $q_2$. Which set constitutes the $\varepsilon$-closure of $q_0$ (denoted $\text{E-set}(q_0)$)? <span class="text-red-500">*</span>
@@ -401,55 +432,48 @@
           <div class="space-y-2 text-sm">
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="pretest_q5" value="Only {q1, q2}" required class="text-blue-600" />
-              <span class="ml-2.5 font-mono">Only {q1, q2}</span>
+              <span class="ml-2.5 font-mono text-slate-700">Only {q1, q2}</span>
             </label>
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="pretest_q5" value="Only {q0}" required class="text-blue-600" />
-              <span class="ml-2.5 font-mono">Only {q0}</span>
+              <span class="ml-2.5 font-mono text-slate-700">Only {q0}</span>
             </label>
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="pretest_q5" value="{q0, q1, q2}" required class="text-blue-600" />
-              <span class="ml-2.5 font-mono font-bold">{q0, q1, q2}</span>
+              <span class="ml-2.5 font-mono text-slate-700">{q0, q1, q2}</span>
             </label>
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="pretest_q5" value="The empty set ∅" required class="text-blue-600" />
-              <span class="ml-2.5">The empty set $\emptyset$</span>
+              <span class="ml-2.5 text-slate-700">The empty set $\emptyset$</span>
             </label>
           </div>
         </div>
-
-        <!-- Navigation Buttons -->
-        <div class="pt-4 border-t border-slate-200 flex justify-end">
-          <button type="button" class="next-btn px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow transition">
-            Proceed to Section 3: Learning Intervention Phase &rarr;
-          </button>
-        </div>
-      </div>
+      </section>
 
       <!-- ========================================================================= -->
       <!-- SECTION 3: LEARNING INTERVENTION PHASE                                    -->
       <!-- ========================================================================= -->
-      <div class="survey-section space-y-8 hidden" id="section-3" data-section-index="3">
+      <section class="survey-section space-y-8 pt-8 border-t-2 border-slate-200 scroll-mt-20" id="section-3">
         <div class="border-b border-slate-200 pb-4">
           <div class="inline-block text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded mb-2">
             Section 3 of 6
           </div>
           <h2 class="text-2xl font-bold text-slate-900">Section 3: Learning Intervention Phase (15 Minutes)</h2>
-          <p class="text-sm text-slate-500 mt-1">Engage with your assigned instructional condition before assessing cognitive load.</p>
+          <p class="text-sm text-slate-500 mt-1">Study your assigned instructional materials before proceeding to cognitive load evaluation.</p>
         </div>
 
         <div class="bg-blue-50 border-l-4 border-blue-600 p-5 rounded-r-xl text-sm leading-relaxed space-y-4 text-blue-950">
           <p class="font-bold text-base uppercase tracking-wide text-blue-900">
-            STOP HERE AND FOLLOW EXPERIMENTER INSTRUCTIONS
+            EXPERIMENTER INSTRUCTIONS FOR THIS PHASE
           </p>
           <p>
-            You will now spend the next <strong>15 minutes</strong> engaging with the instructional materials provided for your assigned condition:
+            Spend <strong>15 minutes</strong> engaging thoroughly with the instructional materials provided for your assigned condition:
           </p>
           
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
             <div class="bg-white p-4 rounded-xl border border-blue-200 shadow-sm">
               <h4 class="font-bold text-blue-800 text-sm uppercase">Condition A: Interactive Streamlit App</h4>
-              <p class="text-xs text-slate-600 mt-1">Open the provided Automata Studio web link:</p>
+              <p class="text-xs text-slate-600 mt-1">Open the provided Automata Studio web application:</p>
               <ol class="list-decimal list-inside text-xs text-slate-700 mt-2 space-y-1">
                 <li>Explore prebuilt scenarios: <em>"Contains Empty Transition"</em> and <em>"Ends with '01'"</em>.</li>
                 <li>Examine the step-by-step mathematical breakdown in the <strong>"Step-by-Step Analysis"</strong> tab.</li>
@@ -466,10 +490,6 @@
               </ol>
             </div>
           </div>
-
-          <p class="text-xs font-semibold text-blue-800 pt-2">
-            When your 15 minutes of study time have elapsed, verify your condition below and proceed to Section 4.
-          </p>
         </div>
 
         <!-- Question 3.1: Condition Verification -->
@@ -488,26 +508,19 @@
             </label>
           </div>
         </div>
-
-        <!-- Navigation Buttons -->
-        <div class="pt-4 border-t border-slate-200 flex justify-end">
-          <button type="button" class="next-btn px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow transition">
-            Proceed to Section 4: Cognitive Load Assessment &rarr;
-          </button>
-        </div>
-      </div>
+      </section>
 
       <!-- ========================================================================= -->
       <!-- SECTION 4: COGNITIVE LOAD MEASUREMENT                                     -->
       <!-- ========================================================================= -->
-      <div class="survey-section space-y-8 hidden" id="section-4" data-section-index="4">
+      <section class="survey-section space-y-8 pt-8 border-t-2 border-slate-200 scroll-mt-20" id="section-4">
         <div class="border-b border-slate-200 pb-4">
           <div class="inline-block text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded mb-2">
             Section 4 of 6
           </div>
           <h2 class="text-2xl font-bold text-slate-900">Section 4: Cognitive Load Measurement</h2>
           <p class="text-sm text-slate-500 mt-1">
-            Adapted from Leppink, Paas, et al. (2013). Please rate your subjective mental experience on a scale from <strong>0 ("Not at all the case")</strong> to <strong>10 ("Completely the case")</strong>.
+            Adapted from Leppink, Paas, et al. (2013). Rate your subjective mental experience on a scale from <strong>0 ("Not at all the case")</strong> to <strong>10 ("Completely the case")</strong>.
           </p>
         </div>
 
@@ -610,26 +623,19 @@
             </div>
           </div>
         </div>
-
-        <!-- Navigation Buttons -->
-        <div class="pt-4 border-t border-slate-200 flex justify-end">
-          <button type="button" class="next-btn px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow transition">
-            Proceed to Section 5: Motivation & Engagement (IMI) &rarr;
-          </button>
-        </div>
-      </div>
+      </section>
 
       <!-- ========================================================================= -->
       <!-- SECTION 5: MOTIVATION AND ENGAGEMENT (IMI)                                -->
       <!-- ========================================================================= -->
-      <div class="survey-section space-y-8 hidden" id="section-5" data-section-index="5">
+      <section class="survey-section space-y-8 pt-8 border-t-2 border-slate-200 scroll-mt-20" id="section-5">
         <div class="border-b border-slate-200 pb-4">
           <div class="inline-block text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded mb-2">
             Section 5 of 6
           </div>
           <h2 class="text-2xl font-bold text-slate-900">Section 5: Motivation and Engagement (Intrinsic Motivation Inventory)</h2>
           <p class="text-sm text-slate-500 mt-1">
-            Please indicate your level of agreement with each statement regarding your learning activity. Scale: <strong>1 = "Strongly Disagree"</strong> to <strong>7 = "Strongly Agree"</strong>.
+            Indicate your level of agreement with each statement. Scale: <strong>1 = "Strongly Disagree"</strong> to <strong>7 = "Strongly Agree"</strong>.
           </p>
         </div>
 
@@ -690,30 +696,23 @@
             <div class="flex items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-50 border border-slate-200 rounded-xl" data-scale="7" data-name="imi_8"></div>
           </div>
         </div>
-
-        <!-- Navigation Buttons -->
-        <div class="pt-4 border-t border-slate-200 flex justify-end">
-          <button type="button" class="next-btn px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow transition">
-            Proceed to Section 6: Comprehensive Post-Test &rarr;
-          </button>
-        </div>
-      </div>
+      </section>
 
       <!-- ========================================================================= -->
       <!-- SECTION 6: COMPREHENSIVE HYBRID POST-INTERVENTION KNOWLEDGE TEST          -->
       <!-- ========================================================================= -->
-      <div class="survey-section space-y-10 hidden" id="section-6" data-section-index="6">
+      <section class="survey-section space-y-10 pt-8 border-t-2 border-slate-200 scroll-mt-20" id="section-6">
         <div class="border-b border-slate-200 pb-4">
           <div class="inline-block text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded mb-2">
             Section 6 of 6
           </div>
           <h2 class="text-2xl font-bold text-slate-900">Section 6: Post-Intervention Knowledge Assessment</h2>
           <div class="mt-2 text-sm text-slate-600 space-y-1 bg-slate-50 border border-slate-200 p-4 rounded-xl">
-            <p><strong>Assessment Guidelines:</strong> This final evaluation measures retention, algorithmic tracing, and deep conceptual transfer of automata transformations.</p>
+            <p><strong>Assessment Guidelines:</strong> This final evaluation measures retention, algorithmic tracing, and conceptual transfer of automata transformations.</p>
             <ul class="list-disc list-inside text-xs text-slate-600 space-y-0.5">
               <li><strong>Total time suggested:</strong> 20 minutes.</li>
               <li><strong>Closed-book:</strong> Do not use notes, simulators, textbook slides, or external websites.</li>
-              <li><strong>Format:</strong> Parts A, B, and C are Multiple-Choice Diagnostic Questions. Parts D and E require constructed mathematical derivations.</li>
+              <li><strong>Format:</strong> Parts A, B, and C are Multiple-Choice Questions. Parts D and E require constructed derivations.</li>
             </ul>
           </div>
         </div>
@@ -846,7 +845,7 @@
             </div>
           </div>
 
-          <!-- Question 6.5 (Q5) -->
+          <!-- Question 6.5 (Fixed: Neutral text weight) -->
           <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
             <p class="font-medium text-slate-900 text-sm">
               <strong>Q5 (Start State Formation):</strong> Applying the formal subset construction algorithm to Context 1, what is the exact initial state $q_{0\_\text{DFA}}$ of the resulting DFA? <span class="text-red-500">*</span>
@@ -854,24 +853,24 @@
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm font-mono">
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="post_q5" value="{A}" required class="text-blue-600" />
-                <span class="ml-2">{A}</span>
+                <span class="ml-2 text-slate-700">{A}</span>
               </label>
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="post_q5" value="{A, B}" required class="text-blue-600" />
-                <span class="ml-2 font-bold">{A, B}</span>
+                <span class="ml-2 text-slate-700">{A, B}</span>
               </label>
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="post_q5" value="{B}" required class="text-blue-600" />
-                <span class="ml-2">{B}</span>
+                <span class="ml-2 text-slate-700">{B}</span>
               </label>
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="post_q5" value="{A, B, C}" required class="text-blue-600" />
-                <span class="ml-2">{A, B, C}</span>
+                <span class="ml-2 text-slate-700">{A, B, C}</span>
               </label>
             </div>
           </div>
 
-          <!-- Question 6.6 (Q6) -->
+          <!-- Question 6.6 (Fixed: Neutral text weight) -->
           <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
             <p class="font-medium text-slate-900 text-sm">
               <strong>Q6 (Step Computation on Symbol '0'):</strong> From the initial DFA state $\{A, B\}$, evaluate the exact target state upon reading input symbol '0': $\text{E-set}(\text{Move}(\{A, B\}, 0))$. <span class="text-red-500">*</span>
@@ -879,24 +878,24 @@
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm font-mono">
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="post_q6" value="{A}" required class="text-blue-600" />
-                <span class="ml-2">{A}</span>
+                <span class="ml-2 text-slate-700">{A}</span>
               </label>
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="post_q6" value="{A, B}" required class="text-blue-600" />
-                <span class="ml-2 font-bold">{A, B}</span>
+                <span class="ml-2 text-slate-700">{A, B}</span>
               </label>
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="post_q6" value="Trap" required class="text-blue-600" />
-                <span class="ml-2">Trap</span>
+                <span class="ml-2 text-slate-700">Trap</span>
               </label>
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="post_q6" value="{A, C}" required class="text-blue-600" />
-                <span class="ml-2">{A, C}</span>
+                <span class="ml-2 text-slate-700">{A, C}</span>
               </label>
             </div>
           </div>
 
-          <!-- Question 6.7 (Q7) -->
+          <!-- Question 6.7 (Fixed: Neutral text weight) -->
           <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
             <p class="font-medium text-slate-900 text-sm">
               <strong>Q7 (Step Computation on Symbol '1'):</strong> From the initial DFA state $\{A, B\}$, evaluate the exact target state upon reading input symbol '1': $\text{E-set}(\text{Move}(\{A, B\}, 1))$. <span class="text-red-500">*</span>
@@ -904,24 +903,24 @@
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm font-mono">
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="post_q7" value="{C}" required class="text-blue-600" />
-                <span class="ml-2 font-bold">{C}</span>
+                <span class="ml-2 text-slate-700">{C}</span>
               </label>
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="post_q7" value="{A, C}" required class="text-blue-600" />
-                <span class="ml-2">{A, C}</span>
+                <span class="ml-2 text-slate-700">{A, C}</span>
               </label>
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="post_q7" value="{B, C}" required class="text-blue-600" />
-                <span class="ml-2">{B, C}</span>
+                <span class="ml-2 text-slate-700">{B, C}</span>
               </label>
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="post_q7" value="Trap" required class="text-blue-600" />
-                <span class="ml-2">Trap</span>
+                <span class="ml-2 text-slate-700">Trap</span>
               </label>
             </div>
           </div>
 
-          <!-- Question 6.8 (Q8) -->
+          <!-- Question 6.8 (Fixed: Neutral text weight) -->
           <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
             <p class="font-medium text-slate-900 text-sm">
               <strong>Q8 (Complete State Count and Minimization):</strong> After constructing all reachable states and computing transitions, what is the exact number of states in the fully minimized equivalent DFA? <span class="text-red-500">*</span>
@@ -929,19 +928,19 @@
             <div class="space-y-2 text-sm">
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="post_q8" value="2 states: {A, B} and {C}" required class="text-blue-600" />
-                <span class="ml-2.5 font-mono">2 states: {A, B} and {C}</span>
+                <span class="ml-2.5 font-mono text-slate-700">2 states: {A, B} and {C}</span>
               </label>
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="post_q8" value="3 states: {A, B}, {C}, and Trap" required class="text-blue-600" />
-                <span class="ml-2.5 font-mono font-bold">3 states: {A, B}, {C}, and Trap</span>
+                <span class="ml-2.5 font-mono text-slate-700">3 states: {A, B}, {C}, and Trap</span>
               </label>
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="post_q8" value="4 states: {A}, {B}, {C}, and Trap" required class="text-blue-600" />
-                <span class="ml-2.5 font-mono">4 states: {A}, {B}, {C}, and Trap</span>
+                <span class="ml-2.5 font-mono text-slate-700">4 states: {A}, {B}, {C}, and Trap</span>
               </label>
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="post_q8" value="1 state: All states merge because they process identical symbols" required class="text-blue-600" />
-                <span class="ml-2.5">1 state: All states merge because they process identical symbols</span>
+                <span class="ml-2.5 text-slate-700">1 state: All states merge because they process identical symbols</span>
               </label>
             </div>
           </div>
@@ -1022,7 +1021,7 @@
               <p>&bull; <strong>States:</strong> $Q = \{1, 2, 3\}$ &bull; <strong>Alphabet:</strong> $\Sigma = \{a, b\}$ &bull; <strong>Start:</strong> $1$ &bull; <strong>Accept:</strong> $F = \{3\}$</p>
               <p>&bull; $\delta(1, a) = \{1\}$ ; $\delta(1, \varepsilon) = \{2\}$</p>
               <p>&bull; $\delta(2, b) = \{2, 3\}$ ; $\delta(2, a) = \emptyset$</p>
-              <p>&bull; $\delta(3, a) = \{3\}$ ; $\delta(3, b) = \emptyset$ ; $\delta(3, \varepsilon) = \emptyset$</p>
+              <p>&bull; $\delta(3, a) = \{3\}$ ; $\delta(3, b) = \emptyset$ ; $\delta(3, \varepsilon) = \emptyset$ boundary</p>
             </div>
           </div>
 
@@ -1103,15 +1102,15 @@
             <div class="space-y-2 text-sm">
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="usability_feature" value="The side-by-side Visual Pipeline (Original NFA -> Converted DFA -> Minimized DFA)" class="text-blue-600" />
-                <span class="ml-2.5">The side-by-side Visual Pipeline (Original NFA $\to$ Converted DFA $\to$ Minimized DFA)</span>
+                <span class="ml-2.5 text-slate-700">The side-by-side Visual Pipeline (Original NFA $\to$ Converted DFA $\to$ Minimized DFA)</span>
               </label>
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="usability_feature" value="The collapsible step-by-step mathematical breakdown tables" class="text-blue-600" />
-                <span class="ml-2.5">The collapsible step-by-step mathematical breakdown tables</span>
+                <span class="ml-2.5 text-slate-700">The collapsible step-by-step mathematical breakdown tables</span>
               </label>
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="usability_feature" value="The interactive String Trace Simulator with real-time state highlighting" class="text-blue-600" />
-                <span class="ml-2.5">The interactive String Trace Simulator with real-time state highlighting</span>
+                <span class="ml-2.5 text-slate-700">The interactive String Trace Simulator with real-time state highlighting</span>
               </label>
               <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
                 <input type="radio" name="usability_feature" value="Not applicable (I was in the static PDF group)" class="text-blue-600" />
@@ -1143,30 +1142,45 @@
           
           <div id="statusAlert" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
         </div>
-      </div>
+      </section>
     </form>
   </div>
 
-  <!-- Client-Side Navigation & Submission Engine -->
+  <!-- Client-Side Engine: Dynamic Scales, Integrity Tracking, and Inline Validation -->
   <script>
     /**
      /
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx6fWoDl2uF-2itB3JazRSw2GIH7qF87XEQhV0pUhKEfCq15BRjSgsZVqHVlX9AXAKY/exec";
 
     const startTime = Date.now();
-    let currentSectionIndex = 1;
-    const totalSections = 6;
 
-    const sectionTitles = {
-      1: "Section 1 of 6: Informed Consent & Demographics",
-      2: "Section 2 of 6: Baseline Knowledge Pre-Test",
-      3: "Section 3 of 6: Learning Intervention Phase",
-      4: "Section 4 of 6: Cognitive Load Measurement",
-      5: "Section 5 of 6: Motivation & Engagement (IMI)",
-      6: "Section 6 of 6: Comprehensive Post-Intervention Assessment"
-    };
+    // 1. Toast Notification Helper (Compliant alternative to window.alert)
+    function showToast(message, isError = true) {
+      const toast = document.getElementById("toastNotification");
+      const box = document.getElementById("toastBox");
+      const icon = document.getElementById("toastIcon");
+      const msg = document.getElementById("toastMessage");
 
-    // 1. Participant ID & Hardware Token Initialization
+      msg.textContent = message;
+      if (isError) {
+        box.className = "rounded-xl shadow-2xl p-4 flex items-center space-x-3 text-sm font-medium bg-rose-50 border-rose-300 text-rose-900 border";
+        icon.textContent = "⚠️";
+      } else {
+        box.className = "rounded-xl shadow-2xl p-4 flex items-center space-x-3 text-sm font-medium bg-emerald-50 border-emerald-300 text-emerald-900 border";
+        icon.textContent = "✅";
+      }
+
+      toast.classList.remove("hidden");
+      setTimeout(() => {
+        hideToast();
+      }, 6000);
+    }
+
+    function hideToast() {
+      document.getElementById("toastNotification").classList.add("hidden");
+    }
+
+    // 2. Participant ID & Hardware Token Tracking
     (function initParticipantTracking() {
       document.getElementById('user_agent').value = navigator.userAgent;
       document.getElementById('screen_resolution').value = `${window.screen.width}x${window.screen.height}`;
@@ -1205,7 +1219,7 @@
         });
     })();
 
-    // 2. Dynamic Likert Scale Generator (0-10 & 1-7)
+    // 3. Dynamic Likert Scale Generator (0-10 & 1-7) & Progress Updating
     document.addEventListener("DOMContentLoaded", () => {
       // 0 to 10 Scales (Section 4)
       document.querySelectorAll('[data-scale="10"]').forEach(container => {
@@ -1239,41 +1253,72 @@
         }
       });
 
-      // Step transition listeners
-      document.querySelectorAll(".next-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          if (validateCurrentSection(currentSectionIndex)) {
-            navigateToSection(currentSectionIndex + 1);
-          }
-        });
-      });
+      // Track completion percentage dynamically
+      const form = document.getElementById("surveyForm");
+      form.addEventListener("change", updateCompletionProgress);
+      form.addEventListener("input", updateCompletionProgress);
+      updateCompletionProgress();
     });
 
-    // 3. Section Validation Engine
-    function validateCurrentSection(sectionIdx) {
-      const activeSection = document.getElementById(`section-${sectionIdx}`);
-      const requiredInputs = activeSection.querySelectorAll("input[required], select[required], textarea[required]");
+    // 4. Progress calculation
+    function updateCompletionProgress() {
+      const requiredInputs = document.querySelectorAll("#surveyForm input[required], #surveyForm textarea[required]");
+      const checkedGroups = new Set();
+      let answeredCount = 0;
+
+      // Group radio names
+      requiredInputs.forEach(input => {
+        if (input.type === "radio") {
+          if (!checkedGroups.has(input.name)) {
+            checkedGroups.add(input.name);
+            const isChecked = document.querySelector(`input[name="${input.name}"]:checked`);
+            if (isChecked) answeredCount++;
+          }
+        } else if (input.type === "checkbox") {
+          if (input.checked) answeredCount++;
+        } else {
+          if (input.value.trim() !== "") answeredCount++;
+        }
+      });
+
+      // Total unique questions required
+      const totalRequiredUnits = (requiredInputs.length - document.querySelectorAll("#surveyForm input[type='radio'][required]").length) + checkedGroups.size;
+      const pct = Math.min(100, Math.round((answeredCount / (totalRequiredUnits || 1)) * 100));
+
+      document.getElementById("progressBar").style.width = `${pct}%`;
+      document.getElementById("progressPercentageLabel").textContent = `${pct}% (${answeredCount}/${totalRequiredUnits})`;
+    }
+
+    // 5. Unified Whole-Form Validation & Smooth Scroll
+    function validateEntireForm() {
+      const form = document.getElementById("surveyForm");
+      const requiredInputs = form.querySelectorAll("input[required], textarea[required]");
 
       for (let input of requiredInputs) {
         if (input.type === "radio") {
-          const radioGroup = activeSection.querySelectorAll(`input[name="${input.name}"]`);
+          const radioGroup = form.querySelectorAll(`input[name="${input.name}"]`);
           const isChecked = Array.from(radioGroup).some(r => r.checked);
           if (!isChecked) {
-            input.closest("div").scrollIntoView({ behavior: "smooth", block: "center" });
-            alert("Please provide an answer for all required questions in this section before continuing.");
+            const card = input.closest("div") || input.parentElement;
+            card.scrollIntoView({ behavior: "smooth", block: "center" });
+            card.classList.add("ring-2", "ring-rose-400", "rounded-xl");
+            setTimeout(() => card.classList.remove("ring-2", "ring-rose-400"), 4000);
+            showToast("Please provide an answer for the highlighted required question.");
             return false;
           }
         } else if (input.type === "checkbox") {
           if (!input.checked) {
             input.scrollIntoView({ behavior: "smooth", block: "center" });
-            alert("Please confirm your voluntary consent to proceed.");
+            showToast("Please confirm your voluntary informed consent to proceed.");
             return false;
           }
         } else {
           if (!input.value.trim()) {
             input.scrollIntoView({ behavior: "smooth", block: "center" });
             input.focus();
-            alert("Please fill in this required field.");
+            input.classList.add("ring-2", "ring-rose-400");
+            setTimeout(() => input.classList.remove("ring-2", "ring-rose-400"), 4000);
+            showToast("Please fill in this required field.");
             return false;
           }
           if (input.type === "number" && input.name === "age") {
@@ -1281,7 +1326,7 @@
             if (isNaN(ageVal) || ageVal < 17 || ageVal > 99) {
               input.scrollIntoView({ behavior: "smooth", block: "center" });
               input.focus();
-              alert("Age must be a whole number between 17 and 99.");
+              showToast("Age must be a numeric whole value between 17 and 99.");
               return false;
             }
           }
@@ -1290,33 +1335,7 @@
       return true;
     }
 
-    // 4. Section Navigation & Progress Update
-    function navigateToSection(targetIndex) {
-      if (targetIndex > totalSections) return;
-
-      // Hide all sections
-      document.querySelectorAll(".survey-section").forEach(sec => sec.classList.add("hidden"));
-
-      // Show target section
-      const targetSec = document.getElementById(`section-${targetIndex}`);
-      targetSec.classList.remove("hidden");
-      currentSectionIndex = targetIndex;
-
-      // Update progress bar
-      const percent = Math.round((currentSectionIndex / totalSections) * 100);
-      document.getElementById("progressBar").style.width = `${percent}%`;
-      document.getElementById("stepIndicatorLabel").textContent = sectionTitles[currentSectionIndex];
-      document.getElementById("stepPercentageLabel").textContent = `${percent}%`;
-
-      // Trigger MathJax re-render for formulas in newly displayed section
-      if (window.MathJax && window.MathJax.typesetPromise) {
-        window.MathJax.typesetPromise();
-      }
-
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    // 5. Final Form Submission
+    // 6. Final Form Submission
     const form = document.getElementById("surveyForm");
     const submitBtn = document.getElementById("submitBtn");
     const btnText = document.getElementById("btnText");
@@ -1326,12 +1345,13 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      if (!validateCurrentSection(6)) return;
+      if (!validateEntireForm()) return;
 
       if (GOOGLE_SCRIPT_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE") {
         statusAlert.className = "mt-4 p-4 rounded-xl text-sm font-medium bg-amber-50 text-amber-900 border border-amber-300";
-        statusAlert.innerHTML = "<strong>Configuration Note:</strong> Replace <code>GOOGLE_SCRIPT_URL</code> in <code>index.html</code> with your deployed Google Apps Script Web App URL.";
+        statusAlert.innerHTML = "<strong>Configuration Notice:</strong> Replace <code>GOOGLE_SCRIPT_URL</code> in <code>index.html</code> with your deployed Google Apps Script Web App URL before production submission.";
         statusAlert.classList.remove("hidden");
+        showToast("Configuration required: GOOGLE_SCRIPT_URL placeholder detected.");
         return;
       }
 
@@ -1340,7 +1360,7 @@
       document.getElementById("time_on_page_seconds").value = elapsedSeconds;
 
       submitBtn.disabled = true;
-      btnText.textContent = "Securing and Recording Submission...";
+      btnText.textContent = "Securing and Logging Submission...";
       spinner.classList.remove("hidden");
       statusAlert.classList.add("hidden");
 
@@ -1366,6 +1386,7 @@
           <p>Thank you for participating in this empirical study! Your responses have been recorded successfully and will contribute directly to research in multimedia computer science education.</p>
         `;
         statusAlert.classList.remove("hidden");
+        showToast("Assessment submitted successfully!", false);
 
         Array.from(form.elements).forEach(el => el.disabled = true);
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1375,6 +1396,7 @@
         statusAlert.className = "mt-4 p-4 rounded-xl text-sm font-medium bg-rose-50 text-rose-900 border border-rose-300";
         statusAlert.innerHTML = "<strong>Submission Error:</strong> Unable to log responses. Please verify your network connectivity and retry.";
         statusAlert.classList.remove("hidden");
+        showToast("Submission failed. Please check network connection.");
         submitBtn.disabled = false;
         btnText.textContent = "Submit Comprehensive Research Assessment";
       } finally {
