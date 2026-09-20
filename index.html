@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Empirical Study: Interactive Visualizations in Automata & Formal Languages</title>
+  <title>Pre-Session Diagnostic & Background Survey: Formal Languages</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- MathJax Configuration for rendering LaTeX expressions -->
+  <!-- MathJax Configuration for rendering mathematical notation -->
   <script>
     window.MathJax = {
       tex: {
@@ -23,7 +23,7 @@
   </script>
 
   <style>
-    /* Radio and checkbox card active selection styles */
+    /* Radio and checkbox card active selection states */
     input[type="radio"]:checked + label,
     input[type="checkbox"]:checked + label {
       border-color: #2563eb;
@@ -31,26 +31,21 @@
       color: #1d4ed8;
     }
     
-    /* Smooth scroll behavior */
     html {
       scroll-behavior: smooth;
     }
 
-    /* Floating Toast Animation */
-    .toast-enter {
-      transform: translateY(-20px);
-      opacity: 0;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
     }
-    .toast-enter-active {
-      transform: translateY(0);
-      opacity: 1;
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
   </style>
 </head>
 <body class="bg-slate-100 text-slate-800 min-h-screen py-6 px-3 sm:px-6 lg:px-8 font-sans antialiased">
 
-  <!-- Floating Toast Notification System (Replaces window.alert) -->
   <div id="toastNotification" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 max-w-md w-full px-4 hidden">
     <div id="toastBox" class="rounded-xl shadow-2xl p-4 flex items-center space-x-3 text-sm font-medium border">
       <span id="toastIcon" class="text-xl">⚠️</span>
@@ -61,27 +56,27 @@
 
   <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
     
-    <!-- Top Header Banner -->
     <header class="bg-slate-900 text-white p-6 sm:p-8 border-b border-slate-800">
       <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
         <div class="inline-flex items-center px-3 py-1 bg-blue-600 text-xs font-semibold uppercase tracking-wider rounded-full text-white">
-          Formal Study Instrument &bull; Unified Single-Page Review
+          Phase 1: Pre-Session Diagnostic & Consent
         </div>
-        <div id="connectionTag" class="text-xs font-mono text-slate-400">
-          Network Integrity: <span id="ipBadge" class="text-amber-400">Verifying...</span>
+        <div id="networkSecurityTag" class="text-xs font-mono text-slate-400 flex items-center space-x-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="networkStatusBadge">Terminal Verified</span>
         </div>
       </div>
       <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-        Empirical Study: Interactive Visualizations in Automata & Formal Languages
+        Automata & Formal Languages: Diagnostic Assessment
       </h1>
       <p class="mt-2 text-slate-300 text-sm leading-relaxed">
-        Evaluating the Cognitive and Pedagogical Effects of Interactive Step-by-Step Automata Simulation on Formal Language Acquisition &bull; Target Duration: 40–45 minutes
+        Academic Study on Algorithmic Problem-Solving &bull; Initial Phase Duration: ~10 minutes
       </p>
 
       <!-- Overall Completion Progress Bar -->
       <div class="mt-6 pt-4 border-t border-slate-800">
         <div class="flex items-center justify-between text-xs font-semibold text-slate-300 mb-2">
-          <span id="progressStatusLabel">Survey Completion Progress</span>
+          <span id="progressStatusLabel">Phase 1 Progress</span>
           <span id="progressPercentageLabel">0%</span>
         </div>
         <div class="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden">
@@ -90,92 +85,95 @@
       </div>
     </header>
 
-    <!-- Quick Navigation Sub-Bar (Sticky for rapid jumping between sections) -->
     <nav class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-slate-200 px-4 py-3 shadow-xs">
       <div class="flex items-center space-x-2 overflow-x-auto text-xs font-semibold no-scrollbar">
-        <span class="text-slate-400 uppercase tracking-wider whitespace-nowrap pl-1">Jump to:</span>
-        <a href="#section-1" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition whitespace-nowrap">1. Consent & Demographics</a>
-        <a href="#section-2" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition whitespace-nowrap">2. Pre-Test</a>
-        <a href="#section-3" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition whitespace-nowrap">3. Intervention</a>
-        <a href="#section-4" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition whitespace-nowrap">4. Cognitive Load</a>
-        <a href="#section-5" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition whitespace-nowrap">5. Motivation (IMI)</a>
-        <a href="#section-6" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition whitespace-nowrap">6. Post-Test Assessment</a>
+        <span class="text-slate-400 uppercase tracking-wider whitespace-nowrap pl-1">Sections:</span>
+        <a href="#section-1" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition whitespace-nowrap">1. Participant Info & Consent</a>
+        <a href="#section-2" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition whitespace-nowrap">2. Baseline Diagnostic Test</a>
       </div>
     </nav>
 
-    <!-- Master Form -->
-    <form id="surveyForm" class="p-6 sm:p-10 space-y-12" novalidate>
-      <!-- Hidden Audit Fields for Fraud Prevention & Verification -->
-      <input type="hidden" name="ip_address" id="ip_address" value="pending" />
+    <form id="preSurveyForm" class="p-6 sm:p-10 space-y-12" novalidate>
+      <input type="hidden" name="ip_address" id="ip_address" value="pending_tracking" />
       <input type="hidden" name="user_agent" id="user_agent" value="" />
       <input type="hidden" name="screen_resolution" id="screen_resolution" value="" />
       <input type="hidden" name="time_on_page_seconds" id="time_on_page_seconds" value="0" />
+      <input type="hidden" name="assigned_condition" id="assigned_condition" value="standard" />
+      <input type="hidden" name="client_timezone" id="client_timezone" value="" />
 
       <!-- ========================================================================= -->
-      <!-- SECTION 1: INFORMED CONSENT & DEMOGRAPHIC INFORMATION                     -->
+      <!-- SECTION 1: INFORMED CONSENT & DEMOGRAPHIC INFORMATION                      -->
       <!-- ========================================================================= -->
       <section class="survey-section space-y-8 scroll-mt-20" id="section-1">
         <div class="border-b border-slate-200 pb-4">
           <div class="inline-block text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded mb-2">
-            Section 1 of 6
+            Section 1 of 2
           </div>
-          <h2 class="text-2xl font-bold text-slate-900">Section 1: Informed Consent & Demographic Information</h2>
-          <p class="text-sm text-slate-500 mt-1">Please confirm your voluntary consent and provide basic academic background information.</p>
+          <h2 class="text-2xl font-bold text-slate-900">Participant Information & Consent</h2>
+          <p class="text-sm text-slate-500 mt-1">Please review the academic terms and verify your background.</p>
         </div>
 
-        <!-- General Description & Consent Statement -->
         <div class="bg-slate-50 border border-slate-200 p-5 sm:p-6 rounded-xl text-sm leading-relaxed space-y-4 text-slate-700">
-          <h3 class="font-bold text-slate-900 text-base">Study Description & Participant Declaration</h3>
+          <h3 class="font-bold text-slate-900 text-base">Study Overview & Terms of Participation</h3>
           <p>
-            You are cordially invited to participate in an empirical study investigating the cognitive and pedagogical effects of instructional representations in Computer Science education (specifically, Formal Languages and Automata Theory).
+            You are invited to participate in an academic study investigating how engineering students reason through, solve, and master theoretical algorithms in Formal Languages and Automata Theory (specifically NFA-to-DFA transformations and state minimization).
           </p>
-          <ul class="list-disc list-inside space-y-1 text-slate-600 text-xs sm:text-sm">
-            <li><strong>Purpose:</strong> Examines how different instructional mediums support cognitive processing, schema acquisition, and algorithmic problem-solving during complex automata transformations.</li>
-            <li><strong>Duration:</strong> The entire experimental session takes approximately 40 to 45 minutes to complete.</li>
-            <li><strong>Voluntary Participation:</strong> Participation is completely voluntary. You may withdraw at any time without penalty.</li>
-            <li><strong>Strict Anonymity & Data Protection:</strong> In full compliance with European GDPR standards, no personally identifiable information (such as your legal name, email, or university student ID) will be collected. All data will be processed anonymously and used strictly for academic research.</li>
-            <li><strong>Academic Neutrality:</strong> Your performance on this assessment will NOT affect your course grades, continuous evaluation, or academic standing.</li>
-          </ul>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs sm:text-sm text-slate-600">
+            <div class="p-3 bg-white rounded-lg border border-slate-200">
+              <strong class="text-slate-800">1. Nature of Activity:</strong> Complete this baseline diagnostic (~10 mins), study the assigned instructional materials for today's session (~15 mins), and complete the post-session assessment.
+            </div>
+            <div class="p-3 bg-white rounded-lg border border-slate-200">
+              <strong class="text-slate-800">2. Voluntary Participation:</strong> Participation is completely voluntary. You may decline or withdraw at any moment without justification or penalty.
+            </div>
+            <div class="p-3 bg-white rounded-lg border border-slate-200">
+              <strong class="text-slate-800">3. Academic Neutrality:</strong> Performance on these diagnostic exercises will <strong>NOT</strong> impact course grades, continuous evaluations, or academic standing.
+            </div>
+            <div class="p-3 bg-white rounded-lg border border-slate-200">
+              <strong class="text-slate-800">4. Scientific Value:</strong> Your authentic, focused effort provides empirical evidence to diagnose computational learning bottlenecks and improve educational design.
+            </div>
+          </div>
+          <div class="p-3 bg-blue-50/70 border border-blue-100 rounded-lg text-xs text-blue-900">
+            <strong>5. Strict Anonymity (GDPR):</strong> No Personally Identifiable Information (names, student IDs, or emails) is stored. All records are indexed solely via an anonymous research code.
+          </div>
 
           <div class="pt-3 border-t border-slate-200">
             <label class="flex items-start space-x-3 cursor-pointer select-none">
               <input type="checkbox" name="consent_confirmed" id="consent_confirmed" required
                 class="mt-1 w-5 h-5 text-blue-600 rounded border-slate-300 focus:ring-blue-500" />
               <span class="text-sm font-semibold text-slate-800">
-                I confirm that I am at least 18 years old, have read and understood the study description, and voluntarily consent to participate in this study. <span class="text-red-500">*</span>
+                I confirm that I am at least 18 years old, have read this information, and freely consent to participate. <span class="text-red-500">*</span>
               </span>
             </label>
           </div>
         </div>
 
-        <!-- Demographic Fields -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Question 1.2: Participant ID -->
           <div>
-            <label class="block text-sm font-semibold text-slate-800 mb-1">
-              Question 1.2: Participant ID <span class="text-red-500">*</span>
+            <label class="block text-sm font-semibold text-slate-800 mb-1 flex items-center justify-between">
+              <span>Question 1.1: Assigned Participant ID <span class="text-red-500">*</span></span>
+              <span class="text-xs font-normal text-emerald-600 font-mono">🔒 Auto-Locked</span>
             </label>
-            <input type="text" name="participant_id" id="participant_id" required
-              placeholder="e.g., SZE_001 or auto-generated token"
-              class="w-full px-4 py-2.5 rounded-lg border border-slate-300 font-mono text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white" />
-            <p class="text-xs text-slate-500 mt-1">Unique assigned identifier (e.g., SZE_001) or auto-generated test token.</p>
+            <div class="relative">
+              <input type="text" name="participant_id" id="participant_id" readonly required
+                class="w-full px-4 py-2.5 rounded-lg border border-slate-300 font-mono text-sm font-bold text-slate-700 bg-slate-100 cursor-not-allowed select-all focus:outline-none" />
+              <span class="absolute right-3 top-2.5 text-xs bg-slate-200 text-slate-600 px-2 py-0.5 rounded font-mono">System Assigned</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">Keep note of this ID; it will connect your pre and post assessment responses.</p>
           </div>
 
-          <!-- Question 1.3: Chronological Age -->
           <div>
             <label class="block text-sm font-semibold text-slate-800 mb-1">
-              Question 1.3: Age (in whole years) <span class="text-red-500">*</span>
+              Question 1.2: Age (in whole years) <span class="text-red-500">*</span>
             </label>
             <input type="number" name="age" id="age" min="17" max="99" required placeholder="Enter age (17 - 99)"
               class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white" />
-            <p class="text-xs text-slate-500 mt-1">Enter your chronological age as a numeric whole value between 17 and 99.</p>
+            <p class="text-xs text-slate-500 mt-1">Chronological age as a numeric whole value.</p>
           </div>
         </div>
 
-        <!-- Question 1.4: Gender Identity -->
         <div>
           <label class="block text-sm font-semibold text-slate-800 mb-2">
-            Question 1.4: Gender Identity <span class="text-red-500">*</span>
+            Question 1.3: Gender Identity <span class="text-red-500">*</span>
           </label>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
@@ -188,19 +186,18 @@
             </label>
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="gender_identity" value="Non-binary / Third gender" required class="text-blue-600 focus:ring-blue-500" />
-              <span class="ml-2 text-slate-700">Non-binary / Third gender</span>
+              <span class="ml-2 text-slate-700">Non-binary</span>
             </label>
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="gender_identity" value="Prefer not to disclose" required class="text-blue-600 focus:ring-blue-500" />
-              <span class="ml-2 text-slate-700">Prefer not to disclose</span>
+              <span class="ml-2 text-slate-700">Prefer not to say</span>
             </label>
           </div>
         </div>
 
-        <!-- Question 1.5: Current Academic Standing -->
         <div>
           <label class="block text-sm font-semibold text-slate-800 mb-2">
-            Question 1.5: Current Academic Standing <span class="text-red-500">*</span>
+            Question 1.4: Current Academic Standing <span class="text-red-500">*</span>
           </label>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
@@ -219,19 +216,14 @@
               <input type="radio" name="academic_standing" value="Master's or Doctoral Student" required class="text-blue-600 focus:ring-blue-500" />
               <span class="ml-2 text-slate-700">Master's or Doctoral Student</span>
             </label>
-            <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50 sm:col-span-2">
-              <input type="radio" name="academic_standing" value="Other" required class="text-blue-600 focus:ring-blue-500" />
-              <span class="ml-2 text-slate-700">Other</span>
-            </label>
           </div>
         </div>
 
-        <!-- Question 1.6: Field of Study -->
         <div>
           <label class="block text-sm font-semibold text-slate-800 mb-2">
-            Question 1.6: Primary Academic Major / Study Program <span class="text-red-500">*</span>
+            Question 1.5: Primary Major / Study Program <span class="text-red-500">*</span>
           </label>
-          <div class="space-y-2.5 text-sm">
+          <div class="space-y-2 text-sm">
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="field_of_study" value="Computer Science / Software Engineering" required class="text-blue-600 focus:ring-blue-500" />
               <span class="ml-2.5 text-slate-700">Computer Science / Software Engineering</span>
@@ -248,29 +240,26 @@
               <input type="radio" name="field_of_study" value="Business Informatics / Data Science" required class="text-blue-600 focus:ring-blue-500" />
               <span class="ml-2.5 text-slate-700">Business Informatics / Data Science</span>
             </label>
-            <div class="flex items-center p-2.5 border border-slate-200 rounded-lg">
-              <input type="radio" name="field_of_study" value="Other Engineering / Natural Sciences" id="field_other_radio" required class="text-blue-600 focus:ring-blue-500 ml-1" />
-              <span class="ml-2 text-slate-700">Other Engineering / Natural Sciences</span>
-              <input type="text" name="field_of_study_other" placeholder="Specify if other..."
-                class="ml-3 px-3 py-1 text-sm border-b border-slate-300 focus:outline-none focus:border-blue-500 flex-1" />
-            </div>
+            <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
+              <input type="radio" name="field_of_study" value="Other Engineering / Natural Sciences" required class="text-blue-600 focus:ring-blue-500" />
+              <span class="ml-2.5 text-slate-700">Other Engineering / Natural Sciences</span>
+            </label>
           </div>
         </div>
 
-        <!-- Question 1.7: English Reading Proficiency -->
         <div>
           <label class="block text-sm font-semibold text-slate-800 mb-1">
-            Question 1.7: Self-Rated English Technical Reading Proficiency <span class="text-red-500">*</span>
+            Question 1.6: Technical English Reading Comfort <span class="text-red-500">*</span>
           </label>
-          <p class="text-xs text-slate-500 mb-2">Assess your comfort level reading computer science literature and technical slides written in English.</p>
+          <p class="text-xs text-slate-500 mb-2">Self-rate your ease with computer science textbook slides in English.</p>
           <div class="space-y-2 text-sm">
             <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="english_proficiency" value="Basic" required class="mt-1 text-blue-600 focus:ring-blue-500" />
-              <span class="ml-2.5 text-slate-700"><strong>Basic:</strong> I frequently require translation assistance or dictionaries for technical texts.</span>
+              <span class="ml-2.5 text-slate-700"><strong>Basic:</strong> I often require translation aids for technical computer science texts.</span>
             </label>
             <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="english_proficiency" value="Intermediate" required class="mt-1 text-blue-600 focus:ring-blue-500" />
-              <span class="ml-2.5 text-slate-700"><strong>Intermediate:</strong> I comfortably read standard technical lecture slides and textbook passages.</span>
+              <span class="ml-2.5 text-slate-700"><strong>Intermediate:</strong> I comfortably read standard technical lecture slides and notes.</span>
             </label>
             <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="english_proficiency" value="Advanced / Fluent" required class="mt-1 text-blue-600 focus:ring-blue-500" />
@@ -278,28 +267,27 @@
             </label>
             <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="english_proficiency" value="Native / Bilingual" required class="mt-1 text-blue-600 focus:ring-blue-500" />
-              <span class="ml-2.5 text-slate-700"><strong>Native / Bilingual:</strong> English is my primary native language.</span>
+              <span class="ml-2.5 text-slate-700"><strong>Native / Bilingual:</strong> English is my primary language.</span>
             </label>
           </div>
         </div>
 
-        <!-- Question 1.8: Prior Familiarity Level -->
         <div>
           <label class="block text-sm font-semibold text-slate-800 mb-2">
-            Question 1.8: Prior Familiarity with Automata and State Machines <span class="text-red-500">*</span>
+            Question 1.7: Prior Familiarity with State Machines & Automata <span class="text-red-500">*</span>
           </label>
           <div class="space-y-2 text-sm">
             <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="prior_familiarity" value="None" required class="mt-1 text-blue-600 focus:ring-blue-500" />
-              <span class="ml-2.5 text-slate-700"><strong>None:</strong> I have never studied or encountered state transition graphs or formal grammars.</span>
+              <span class="ml-2.5 text-slate-700"><strong>None:</strong> I have never studied state transition graphs or formal grammars.</span>
             </label>
             <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="prior_familiarity" value="Conceptual only" required class="mt-1 text-blue-600 focus:ring-blue-500" />
-              <span class="ml-2.5 text-slate-700"><strong>Conceptual only:</strong> I am familiar with the terms NFA and DFA, but have never manually executed transformations.</span>
+              <span class="ml-2.5 text-slate-700"><strong>Conceptual only:</strong> Familiar with NFA and DFA terms, but haven't manually executed conversions.</span>
             </label>
             <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
               <input type="radio" name="prior_familiarity" value="Practical" required class="mt-1 text-blue-600 focus:ring-blue-500" />
-              <span class="ml-2.5 text-slate-700"><strong>Practical:</strong> I have previously solved NFA-to-DFA conversion or minimization problems in class or coursework.</span>
+              <span class="ml-2.5 text-slate-700"><strong>Practical:</strong> Have previously solved NFA-to-DFA conversion or minimization problems in coursework.</span>
             </label>
           </div>
         </div>
@@ -311,23 +299,22 @@
       <section class="survey-section space-y-8 pt-8 border-t-2 border-slate-200 scroll-mt-20" id="section-2">
         <div class="border-b border-slate-200 pb-4">
           <div class="inline-block text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded mb-2">
-            Section 2 of 6
+            Section 2 of 2
           </div>
-          <h2 class="text-2xl font-bold text-slate-900">Section 2: Baseline Knowledge Pre-Test</h2>
+          <h2 class="text-2xl font-bold text-slate-900">Baseline Knowledge Diagnostic</h2>
           <div class="mt-2 text-sm text-slate-600 space-y-1 bg-amber-50 border border-amber-200 p-4 rounded-xl">
-            <p><strong>Instructions:</strong> This section assesses your baseline familiarity with foundational discrete mathematics and basic state machine concepts.</p>
+            <p><strong>Instructions:</strong> This diagnostic establishes baseline familiarity with foundational discrete mathematics and basic state concepts.</p>
             <ul class="list-disc list-inside text-xs text-amber-900 space-y-0.5">
-              <li><strong>Time limit:</strong> 5 minutes.</li>
-              <li><strong>Closed-book:</strong> Please answer based on your current knowledge without using textbooks, simulators, or external references.</li>
-              <li>If uncertain about a question, select your best conceptual estimate.</li>
+              <li><strong>Closed-book:</strong> Answer using your current knowledge without consulting external notes or calculators.</li>
+              <li>Estimated duration: ~5 minutes.</li>
             </ul>
           </div>
         </div>
 
-        <!-- Question 2.1 (Fixed: Removed accidental bold on option 4) -->
+        <!-- Question 2.1 -->
         <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
           <p class="font-medium text-slate-900 text-sm">
-            <strong>Question 2.1 (Discrete Mathematics: Power Set):</strong> Let $A = \{q_0, q_1\}$ be a set containing 2 distinct state labels. What is the total number of elements in its power set $\mathcal{P}(A)$? <span class="text-red-500">*</span>
+            <strong>Question 2.1 (Power Set Property):</strong> Let $A = \{q_0, q_1\}$ be a set containing 2 distinct state labels. What is the total number of elements in its power set $\mathcal{P}(A)$? <span class="text-red-500">*</span>
           </p>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm">
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
@@ -352,7 +339,7 @@
         <!-- Question 2.2 -->
         <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
           <p class="font-medium text-slate-900 text-sm">
-            <strong>Question 2.2 (Automata Formal Tuple: Transition Function):</strong> In the formal 5-tuple definition of a Deterministic Finite Automaton $M = (Q, \Sigma, \delta, q_0, F)$, what mathematical object does the symbol $\delta$ represent? <span class="text-red-500">*</span>
+            <strong>Question 2.2 (Formal Automaton Specification):</strong> In the formal 5-tuple definition of a Deterministic Finite Automaton $M = (Q, \Sigma, \delta, q_0, F)$, what mathematical object does the symbol $\delta$ denote? <span class="text-red-500">*</span>
           </p>
           <div class="space-y-2 text-sm">
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
@@ -377,7 +364,7 @@
         <!-- Question 2.3 -->
         <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
           <p class="font-medium text-slate-900 text-sm">
-            <strong>Question 2.3 (NFA vs. DFA Operational Mechanics):</strong> Which of the following statements rigorously describes the operational distinction between an NFA and a DFA? <span class="text-red-500">*</span>
+            <strong>Question 2.3 (Operational Distinction):</strong> Which statement correctly describes the operational distinction between an NFA and a DFA? <span class="text-red-500">*</span>
           </p>
           <div class="space-y-2 text-sm">
             <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
@@ -399,10 +386,10 @@
           </div>
         </div>
 
-        <!-- Question 2.4 (Fixed: Removed accidental bold on option 001) -->
+        <!-- Question 2.4 -->
         <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
           <p class="font-medium text-slate-900 text-sm">
-            <strong>Question 2.4 (Automaton Execution Path):</strong> Consider an automaton with state A (start) and state B (accept). Reading '0' loops on A; reading '1' transitions from A to B. From B, reading either '0' or '1' transitions back to A. Which of the following strings is accepted? <span class="text-red-500">*</span>
+            <strong>Question 2.4 (Execution Tracing):</strong> Consider an automaton with state A (start) and state B (accept). Reading '0' loops on A; reading '1' transitions from A to B. From B, reading either '0' or '1' transitions back to A. Which of the following strings is accepted? <span class="text-red-500">*</span>
           </p>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm">
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
@@ -424,10 +411,10 @@
           </div>
         </div>
 
-        <!-- Question 2.5 (Fixed: Removed accidental bold on option {q0, q1, q2}) -->
+        <!-- Question 2.5 -->
         <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
           <p class="font-medium text-slate-900 text-sm">
-            <strong>Question 2.5 (Empty Closure Basic Reachability):</strong> In an NFA, suppose there is an $\varepsilon$-transition from state $q_0$ to $q_1$, and an $\varepsilon$-transition from state $q_1$ to $q_2$. Which set constitutes the $\varepsilon$-closure of $q_0$ (denoted $\text{E-set}(q_0)$)? <span class="text-red-500">*</span>
+            <strong>Question 2.5 (Empty Closure Reachability):</strong> In an NFA, suppose there is an $\varepsilon$-transition from state $q_0$ to $q_1$, and an $\varepsilon$-transition from state $q_1$ to $q_2$. Which set constitutes the $\varepsilon$-closure of $q_0$ (denoted $\text{E-set}(q_0)$)? <span class="text-red-500">*</span>
           </p>
           <div class="space-y-2 text-sm">
             <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
@@ -448,713 +435,28 @@
             </label>
           </div>
         </div>
-      </section>
 
-      <!-- ========================================================================= -->
-      <!-- SECTION 3: LEARNING INTERVENTION PHASE                                    -->
-      <!-- ========================================================================= -->
-      <section class="survey-section space-y-8 pt-8 border-t-2 border-slate-200 scroll-mt-20" id="section-3">
-        <div class="border-b border-slate-200 pb-4">
-          <div class="inline-block text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded mb-2">
-            Section 3 of 6
-          </div>
-          <h2 class="text-2xl font-bold text-slate-900">Section 3: Learning Intervention Phase (15 Minutes)</h2>
-          <p class="text-sm text-slate-500 mt-1">Study your assigned instructional materials before proceeding to cognitive load evaluation.</p>
-        </div>
-
-        <div class="bg-blue-50 border-l-4 border-blue-600 p-5 rounded-r-xl text-sm leading-relaxed space-y-4 text-blue-950">
-          <p class="font-bold text-base uppercase tracking-wide text-blue-900">
-            EXPERIMENTER INSTRUCTIONS FOR THIS PHASE
-          </p>
-          <p>
-            Spend <strong>15 minutes</strong> engaging thoroughly with the instructional materials provided for your assigned condition:
-          </p>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-            <div class="bg-white p-4 rounded-xl border border-blue-200 shadow-sm">
-              <h4 class="font-bold text-blue-800 text-sm uppercase">Condition A: Interactive Streamlit App</h4>
-              <p class="text-xs text-slate-600 mt-1">Open the provided Automata Studio web application:</p>
-              <ol class="list-decimal list-inside text-xs text-slate-700 mt-2 space-y-1">
-                <li>Explore prebuilt scenarios: <em>"Contains Empty Transition"</em> and <em>"Ends with '01'"</em>.</li>
-                <li>Examine the step-by-step mathematical breakdown in the <strong>"Step-by-Step Analysis"</strong> tab.</li>
-                <li>Test at least 2 input strings in the <strong>"Visual String Simulator"</strong> tab to inspect active path tracing.</li>
-              </ol>
-            </div>
-
-            <div class="bg-white p-4 rounded-xl border border-blue-200 shadow-sm">
-              <h4 class="font-bold text-blue-800 text-sm uppercase">Condition B: Static Instructional PDF</h4>
-              <p class="text-xs text-slate-600 mt-1">Open the provided PDF Document:</p>
-              <ol class="list-decimal list-inside text-xs text-slate-700 mt-2 space-y-1">
-                <li>Carefully study the formal definitions, state diagrams, and transition matrices.</li>
-                <li>Trace through the worked transformation examples and state minimization tables step by step.</li>
-              </ol>
-            </div>
-          </div>
-        </div>
-
-        <!-- Question 3.1: Condition Verification -->
-        <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
-          <label class="block text-sm font-semibold text-slate-800">
-            Question 3.1: Which instructional medium did you study during this session? <span class="text-red-500">*</span>
-          </label>
-          <div class="space-y-2 text-sm">
-            <label class="flex items-center p-3.5 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-              <input type="radio" name="intervention_condition" value="Interactive Automata Studio (Streamlit Web Application)" required class="text-blue-600 focus:ring-blue-500" />
-              <span class="ml-3 font-medium text-slate-800">Interactive Automata Studio (Streamlit Web Application)</span>
-            </label>
-            <label class="flex items-center p-3.5 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-              <input type="radio" name="intervention_condition" value="Static Instructional Document (PDF Text and Diagrams)" required class="text-blue-600 focus:ring-blue-500" />
-              <span class="ml-3 font-medium text-slate-800">Static Instructional Document (PDF Text and Diagrams)</span>
-            </label>
-          </div>
-        </div>
-      </section>
-
-      <!-- ========================================================================= -->
-      <!-- SECTION 4: COGNITIVE LOAD MEASUREMENT                                     -->
-      <!-- ========================================================================= -->
-      <section class="survey-section space-y-8 pt-8 border-t-2 border-slate-200 scroll-mt-20" id="section-4">
-        <div class="border-b border-slate-200 pb-4">
-          <div class="inline-block text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded mb-2">
-            Section 4 of 6
-          </div>
-          <h2 class="text-2xl font-bold text-slate-900">Section 4: Cognitive Load Measurement</h2>
-          <p class="text-sm text-slate-500 mt-1">
-            Adapted from Leppink, Paas, et al. (2013). Rate your subjective mental experience on a scale from <strong>0 ("Not at all the case")</strong> to <strong>10 ("Completely the case")</strong>.
-          </p>
-        </div>
-
-        <!-- Dimension 1: Intrinsic Cognitive Load (IL) -->
-        <div class="space-y-6">
-          <div class="bg-slate-100 p-3 rounded-lg">
-            <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wide">Dimension 1: Intrinsic Cognitive Load (IL)</h3>
-            <p class="text-xs text-slate-600 mt-0.5">Measures mental effort associated with the inherent difficulty of the algorithm.</p>
-          </div>
-
-          <div class="space-y-5">
-            <div>
-              <p class="text-sm font-medium text-slate-800 mb-2">
-                <strong>IL1:</strong> The topics covered today (Subset Construction and DFA Minimization) were inherently complex. <span class="text-red-500">*</span>
-              </p>
-              <div class="flex items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-50 border border-slate-200 rounded-xl" data-scale="10" data-name="cog_il1"></div>
-            </div>
-
-            <div>
-              <p class="text-sm font-medium text-slate-800 mb-2">
-                <strong>IL2:</strong> The algorithmic conversion rules and equivalence partitioning required me to hold and coordinate many concepts simultaneously. <span class="text-red-500">*</span>
-              </p>
-              <div class="flex items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-50 border border-slate-200 rounded-xl" data-scale="10" data-name="cog_il2"></div>
-            </div>
-
-            <div>
-              <p class="text-sm font-medium text-slate-800 mb-2">
-                <strong>IL3:</strong> The theoretical substance of this learning session placed a heavy demand on my working memory. <span class="text-red-500">*</span>
-              </p>
-              <div class="flex items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-50 border border-slate-200 rounded-xl" data-scale="10" data-name="cog_il3"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Dimension 2: Extraneous Cognitive Load (EL) -->
-        <div class="space-y-6">
-          <div class="bg-slate-100 p-3 rounded-lg">
-            <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wide">Dimension 2: Extraneous Cognitive Load (EL)</h3>
-            <p class="text-xs text-slate-600 mt-0.5">Measures mental effort wasted due to interface design, presentation layout, or navigating the medium.</p>
-          </div>
-
-          <div class="space-y-5">
-            <div>
-              <p class="text-sm font-medium text-slate-800 mb-2">
-                <strong>EL1:</strong> The visual layout and presentation of the learning material made the learning process unnecessarily complicated. <span class="text-red-500">*</span>
-              </p>
-              <div class="flex items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-50 border border-slate-200 rounded-xl" data-scale="10" data-name="cog_el1"></div>
-            </div>
-
-            <div>
-              <p class="text-sm font-medium text-slate-800 mb-2">
-                <strong>EL2:</strong> The diagrams, tables, or interface controls were distracting and hindered my focus on the core algorithms. <span class="text-red-500">*</span>
-              </p>
-              <div class="flex items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-50 border border-slate-200 rounded-xl" data-scale="10" data-name="cog_el2"></div>
-            </div>
-
-            <div>
-              <p class="text-sm font-medium text-slate-800 mb-2">
-                <strong>EL3:</strong> I had to expend substantial mental effort figuring out how to use/navigate the instructional medium rather than comprehending the mathematical concepts. <span class="text-red-500">*</span>
-              </p>
-              <div class="flex items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-50 border border-slate-200 rounded-xl" data-scale="10" data-name="cog_el3"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Dimension 3: Germane Cognitive Load (GL) -->
-        <div class="space-y-6">
-          <div class="bg-slate-100 p-3 rounded-lg">
-            <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wide">Dimension 3: Germane Cognitive Load (GL)</h3>
-            <p class="text-xs text-slate-600 mt-0.5">Measures productive mental effort dedicated to constructing clear mental models and schemas.</p>
-          </div>
-
-          <div class="space-y-5">
-            <div>
-              <p class="text-sm font-medium text-slate-800 mb-2">
-                <strong>GL1:</strong> The step-by-step visual progression clearly helped me link mathematical formulas to state graph transformations. <span class="text-red-500">*</span>
-              </p>
-              <div class="flex items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-50 border border-slate-200 rounded-xl" data-scale="10" data-name="cog_gl1"></div>
-            </div>
-
-            <div>
-              <p class="text-sm font-medium text-slate-800 mb-2">
-                <strong>GL2:</strong> Tracking how input strings navigate state-by-state enhanced my understanding of deterministic state behavior. <span class="text-red-500">*</span>
-              </p>
-              <div class="flex items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-50 border border-slate-200 rounded-xl" data-scale="10" data-name="cog_gl2"></div>
-            </div>
-
-            <div>
-              <p class="text-sm font-medium text-slate-800 mb-2">
-                <strong>GL3:</strong> The structural presentation encouraged me to think systematically about the underlying logic of state minimization. <span class="text-red-500">*</span>
-              </p>
-              <div class="flex items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-50 border border-slate-200 rounded-xl" data-scale="10" data-name="cog_gl3"></div>
-            </div>
-
-            <div>
-              <p class="text-sm font-medium text-slate-800 mb-2">
-                <strong>GL4:</strong> This learning session effectively supported me in building a clear mental schema for converting and minimizing finite state machines. <span class="text-red-500">*</span>
-              </p>
-              <div class="flex items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-50 border border-slate-200 rounded-xl" data-scale="10" data-name="cog_gl4"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ========================================================================= -->
-      <!-- SECTION 5: MOTIVATION AND ENGAGEMENT (IMI)                                -->
-      <!-- ========================================================================= -->
-      <section class="survey-section space-y-8 pt-8 border-t-2 border-slate-200 scroll-mt-20" id="section-5">
-        <div class="border-b border-slate-200 pb-4">
-          <div class="inline-block text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded mb-2">
-            Section 5 of 6
-          </div>
-          <h2 class="text-2xl font-bold text-slate-900">Section 5: Motivation and Engagement (Intrinsic Motivation Inventory)</h2>
-          <p class="text-sm text-slate-500 mt-1">
-            Indicate your level of agreement with each statement. Scale: <strong>1 = "Strongly Disagree"</strong> to <strong>7 = "Strongly Agree"</strong>.
-          </p>
-        </div>
-
-        <div class="space-y-6">
-          <div>
-            <p class="text-sm font-medium text-slate-800 mb-1">
-              <strong>IMI1 (Interest / Enjoyment):</strong> I found this learning activity engaging and enjoyable. <span class="text-red-500">*</span>
-            </p>
-            <div class="flex items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-50 border border-slate-200 rounded-xl" data-scale="7" data-name="imi_1"></div>
-          </div>
-
-          <div>
-            <p class="text-sm font-medium text-slate-800 mb-1">
-              <strong>IMI2 (Intellectual Satisfaction):</strong> Testing how automata process input strings felt intellectually rewarding, almost like solving a puzzle. <span class="text-red-500">*</span>
-            </p>
-            <div class="flex items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-50 border border-slate-200 rounded-xl" data-scale="7" data-name="imi_2"></div>
-          </div>
-
-          <div>
-            <p class="text-sm font-medium text-slate-800 mb-1">
-              <strong>IMI3 (Perceived Competence: Conversion):</strong> I feel confident in my ability to convert an NFA into a DFA using Subset Construction. <span class="text-red-500">*</span>
-            </p>
-            <div class="flex items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-50 border border-slate-200 rounded-xl" data-scale="7" data-name="imi_3"></div>
-          </div>
-
-          <div>
-            <p class="text-sm font-medium text-slate-800 mb-1">
-              <strong>IMI4 (Perceived Competence: Minimization):</strong> I believe I can independently solve an unfamiliar DFA minimization problem correctly. <span class="text-red-500">*</span>
-            </p>
-            <div class="flex items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-50 border border-slate-200 rounded-xl" data-scale="7" data-name="imi_4"></div>
-          </div>
-
-          <div>
-            <p class="text-sm font-medium text-slate-800 mb-1">
-              <strong>IMI5 (Perceived Utility / Value):</strong> The visual representations helped me comprehend the algorithms faster than conventional static text explanations. <span class="text-red-500">*</span>
-            </p>
-            <div class="flex items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-50 border border-slate-200 rounded-xl" data-scale="7" data-name="imi_5"></div>
-          </div>
-
-          <div>
-            <p class="text-sm font-medium text-slate-800 mb-1">
-              <strong>IMI6 (Educational Importance):</strong> I believe this instructional approach holds substantial educational value for challenging theoretical computer science topics. <span class="text-red-500">*</span>
-            </p>
-            <div class="flex items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-50 border border-slate-200 rounded-xl" data-scale="7" data-name="imi_6"></div>
-          </div>
-
-          <div>
-            <p class="text-sm font-medium text-slate-800 mb-1">
-              <strong>IMI7 (Focused Effort):</strong> I put considerable mental focus and effort into understanding the algorithmic transitions. <span class="text-red-500">*</span>
-            </p>
-            <div class="flex items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-50 border border-slate-200 rounded-xl" data-scale="7" data-name="imi_7"></div>
-          </div>
-
-          <div>
-            <p class="text-sm font-medium text-slate-800 mb-1">
-              <strong>IMI8 (Personal Mastery Goal):</strong> Truly grasping each step of the formal transformation process was personally important to me. <span class="text-red-500">*</span>
-            </p>
-            <div class="flex items-center justify-between gap-1 overflow-x-auto p-1 bg-slate-50 border border-slate-200 rounded-xl" data-scale="7" data-name="imi_8"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ========================================================================= -->
-      <!-- SECTION 6: COMPREHENSIVE HYBRID POST-INTERVENTION KNOWLEDGE TEST          -->
-      <!-- ========================================================================= -->
-      <section class="survey-section space-y-10 pt-8 border-t-2 border-slate-200 scroll-mt-20" id="section-6">
-        <div class="border-b border-slate-200 pb-4">
-          <div class="inline-block text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded mb-2">
-            Section 6 of 6
-          </div>
-          <h2 class="text-2xl font-bold text-slate-900">Section 6: Post-Intervention Knowledge Assessment</h2>
-          <div class="mt-2 text-sm text-slate-600 space-y-1 bg-slate-50 border border-slate-200 p-4 rounded-xl">
-            <p><strong>Assessment Guidelines:</strong> This final evaluation measures retention, algorithmic tracing, and conceptual transfer of automata transformations.</p>
-            <ul class="list-disc list-inside text-xs text-slate-600 space-y-0.5">
-              <li><strong>Total time suggested:</strong> 20 minutes.</li>
-              <li><strong>Closed-book:</strong> Do not use notes, simulators, textbook slides, or external websites.</li>
-              <li><strong>Format:</strong> Parts A, B, and C are Multiple-Choice Questions. Parts D and E require constructed derivations.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- PART A: RETENTION & FOUNDATIONAL DEFINITIONS (DIAGNOSTIC MCQS) -->
-        <div class="space-y-6">
-          <div class="bg-slate-900 text-white p-3 rounded-lg flex justify-between items-center">
-            <h3 class="text-sm font-bold uppercase tracking-wider">Part A: Retention & Foundational Definitions</h3>
-            <span class="text-xs text-slate-300">Diagnostic MCQs</span>
-          </div>
-
-          <!-- Question 6.1 (Q1) -->
-          <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
-            <p class="font-medium text-slate-900 text-sm">
-              <strong>Q1 ($\varepsilon$-Closure Invariant):</strong> In an NFA with $\varepsilon$-transitions, what is the exact condition under which the $\varepsilon$-closure of a state $q$ is strictly equal to the singleton set $\{q\}$ (i.e., $\text{E-set}(q) = \{q\}$)? <span class="text-red-500">*</span>
-            </p>
-            <div class="space-y-2 text-sm">
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q1" value="State q has no transitions of any kind directed into it or originating from it." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">State $q$ has no transitions of any kind directed into it or originating from it.</span>
-              </label>
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q1" value="There are no outgoing ε-transitions originating from state q." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">There are no outgoing $\varepsilon$-transitions originating from state $q$.</span>
-              </label>
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q1" value="State q has no incoming ε-transitions arriving from other states." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">State $q$ has no incoming $\varepsilon$-transitions arriving from other states.</span>
-              </label>
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q1" value="State q is strictly the initial start state q0 of the automaton." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">State $q$ is strictly the initial start state $q_0$ of the automaton.</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Question 6.2 (Q2) -->
-          <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
-            <p class="font-medium text-slate-900 text-sm">
-              <strong>Q2 (Accepting Criterion in Subset Construction):</strong> Let $M_{\text{DFA}}$ be an automaton constructed via Subset Construction. Under what formal condition is a compound state $S = \{q_1, q_2, \dots, q_k\}$ designated as an accepting state? <span class="text-red-500">*</span>
-            </p>
-            <div class="space-y-2 text-sm">
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q2" value="Every constituent state must be an accept state in the original NFA (i.e., S ⊆ F_NFA)." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">Every constituent state must be an accept state in the original NFA (i.e., $S \subseteq F_{\text{NFA}}$).</span>
-              </label>
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q2" value="More than half of the constituent states must belong to F_NFA (|S ∩ F_NFA| > 0.5 * |S|)." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">More than half of the constituent states must belong to $F_{\text{NFA}}$ ($|S \cap F_{\text{NFA}}| > 0.5 \times |S|$).</span>
-              </label>
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q2" value="At least one constituent state must belong to the original accept set (i.e., S ∩ F_NFA ≠ ∅)." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">At least one constituent state must belong to the original accept set (i.e., $S \cap F_{\text{NFA}} \neq \emptyset$).</span>
-              </label>
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q2" value="The compound state S must contain both the start state q0 and at least one state from F_NFA." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">The compound state $S$ must contain both the start state $q_0$ and at least one state from $F_{\text{NFA}}$.</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Question 6.3 (Q3) -->
-          <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
-            <p class="font-medium text-slate-900 text-sm">
-              <strong>Q3 (Structural Purpose of Trap State):</strong> What is the formal theoretical necessity of introducing a "Dead State" (Trap State) when transforming an NFA into a DFA? <span class="text-red-500">*</span>
-            </p>
-            <div class="space-y-2 text-sm">
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q3" value="To ensure the state transition function δ_DFA: Q_DFA × Σ -> Q_DFA is total while strictly rejecting non-accepted string continuations." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">To ensure the state transition function $\delta_{\text{DFA}}: Q_{\text{DFA}} \times \Sigma \to Q_{\text{DFA}}$ is total while strictly rejecting non-accepted string continuations.</span>
-              </label>
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q3" value="To eliminate cyclic dependencies and infinite loops produced by cyclic ε-paths." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">To eliminate cyclic dependencies and infinite loops produced by cyclic $\varepsilon$-paths.</span>
-              </label>
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q3" value="To minimize the computational execution complexity of the subsequent Hopcroft minimization." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">To minimize the computational execution complexity of the subsequent Hopcroft minimization.</span>
-              </label>
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q3" value="To enable the DFA to process empty words without an explicit initial transition." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">To enable the DFA to process empty words without an explicit initial transition.</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Question 6.4 (Q4) -->
-          <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
-            <p class="font-medium text-slate-900 text-sm">
-              <strong>Q4 (Equivalence Partitioning Invariant):</strong> In Moore's or Hopcroft's DFA minimization, what foundational principle justifies partitioning states initially into $P_0 = \{Q \setminus F, F\}$? <span class="text-red-500">*</span>
-            </p>
-            <div class="space-y-2 text-sm">
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q4" value="Accepting and non-accepting states are 0-distinguishable because they produce different acceptance semantics on the empty word ε." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">Accepting and non-accepting states are 0-distinguishable because they produce different acceptance semantics on the empty word $\varepsilon$.</span>
-              </label>
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q4" value="Non-accepting states always possess fewer outgoing transitions than accepting states." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">Non-accepting states always possess fewer outgoing transitions than accepting states.</span>
-              </label>
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q4" value="Minimization algorithms cannot collapse states that have self-loop transitions on identical characters." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">Minimization algorithms cannot collapse states that have self-loop transitions on identical characters.</span>
-              </label>
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q4" value="Initial partitioning is purely an arbitrary computational heuristic to accelerate partition convergence." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">Initial partitioning is purely an arbitrary computational heuristic to accelerate partition convergence.</span>
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <!-- PART B: NEAR-TRANSFER (ALGORITHMIC TRACE DIAGNOSTIC MCQS) -->
-        <div class="space-y-6">
-          <div class="bg-slate-900 text-white p-3 rounded-lg flex justify-between items-center">
-            <h3 class="text-sm font-bold uppercase tracking-wider">Part B: Near-Transfer & Algorithmic Tracing</h3>
-            <span class="text-xs text-slate-300">Context 1 Diagnostic MCQs</span>
-          </div>
-
-          <!-- Algorithmic Context 1 Description Box -->
-          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-sm space-y-2">
-            <p class="font-bold text-slate-900">ALGORITHMIC CONTEXT 1:</p>
-            <p class="text-xs text-slate-700">
-              Consider an NFA over alphabet $\Sigma = \{0, 1\}$ with states $Q = \{A, B, C\}$, start state $A$, and accept state $C$.
-            </p>
-            <div class="font-mono text-xs bg-white p-3 rounded border border-slate-200 text-slate-800 space-y-1">
-              <p>&bull; <strong>State A:</strong> reads '0' $\to \{A\}$; reads '$\varepsilon$' $\to \{B\}$</p>
-              <p>&bull; <strong>State B:</strong> reads '1' $\to \{C\}$; reads '0' $\to \emptyset$; reads '$\varepsilon$' $\to \emptyset$</p>
-              <p>&bull; <strong>State C:</strong> reads '0' $\to \{C\}$; reads '1' $\to \emptyset$; reads '$\varepsilon$' $\to \emptyset$</p>
-            </div>
-          </div>
-
-          <!-- Question 6.5 (Fixed: Neutral text weight) -->
-          <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
-            <p class="font-medium text-slate-900 text-sm">
-              <strong>Q5 (Start State Formation):</strong> Applying the formal subset construction algorithm to Context 1, what is the exact initial state $q_{0\_\text{DFA}}$ of the resulting DFA? <span class="text-red-500">*</span>
-            </p>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm font-mono">
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q5" value="{A}" required class="text-blue-600" />
-                <span class="ml-2 text-slate-700">{A}</span>
-              </label>
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q5" value="{A, B}" required class="text-blue-600" />
-                <span class="ml-2 text-slate-700">{A, B}</span>
-              </label>
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q5" value="{B}" required class="text-blue-600" />
-                <span class="ml-2 text-slate-700">{B}</span>
-              </label>
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q5" value="{A, B, C}" required class="text-blue-600" />
-                <span class="ml-2 text-slate-700">{A, B, C}</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Question 6.6 (Fixed: Neutral text weight) -->
-          <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
-            <p class="font-medium text-slate-900 text-sm">
-              <strong>Q6 (Step Computation on Symbol '0'):</strong> From the initial DFA state $\{A, B\}$, evaluate the exact target state upon reading input symbol '0': $\text{E-set}(\text{Move}(\{A, B\}, 0))$. <span class="text-red-500">*</span>
-            </p>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm font-mono">
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q6" value="{A}" required class="text-blue-600" />
-                <span class="ml-2 text-slate-700">{A}</span>
-              </label>
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q6" value="{A, B}" required class="text-blue-600" />
-                <span class="ml-2 text-slate-700">{A, B}</span>
-              </label>
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q6" value="Trap" required class="text-blue-600" />
-                <span class="ml-2 text-slate-700">Trap</span>
-              </label>
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q6" value="{A, C}" required class="text-blue-600" />
-                <span class="ml-2 text-slate-700">{A, C}</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Question 6.7 (Fixed: Neutral text weight) -->
-          <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
-            <p class="font-medium text-slate-900 text-sm">
-              <strong>Q7 (Step Computation on Symbol '1'):</strong> From the initial DFA state $\{A, B\}$, evaluate the exact target state upon reading input symbol '1': $\text{E-set}(\text{Move}(\{A, B\}, 1))$. <span class="text-red-500">*</span>
-            </p>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm font-mono">
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q7" value="{C}" required class="text-blue-600" />
-                <span class="ml-2 text-slate-700">{C}</span>
-              </label>
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q7" value="{A, C}" required class="text-blue-600" />
-                <span class="ml-2 text-slate-700">{A, C}</span>
-              </label>
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q7" value="{B, C}" required class="text-blue-600" />
-                <span class="ml-2 text-slate-700">{B, C}</span>
-              </label>
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q7" value="Trap" required class="text-blue-600" />
-                <span class="ml-2 text-slate-700">Trap</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Question 6.8 (Fixed: Neutral text weight) -->
-          <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
-            <p class="font-medium text-slate-900 text-sm">
-              <strong>Q8 (Complete State Count and Minimization):</strong> After constructing all reachable states and computing transitions, what is the exact number of states in the fully minimized equivalent DFA? <span class="text-red-500">*</span>
-            </p>
-            <div class="space-y-2 text-sm">
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q8" value="2 states: {A, B} and {C}" required class="text-blue-600" />
-                <span class="ml-2.5 font-mono text-slate-700">2 states: {A, B} and {C}</span>
-              </label>
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q8" value="3 states: {A, B}, {C}, and Trap" required class="text-blue-600" />
-                <span class="ml-2.5 font-mono text-slate-700">3 states: {A, B}, {C}, and Trap</span>
-              </label>
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q8" value="4 states: {A}, {B}, {C}, and Trap" required class="text-blue-600" />
-                <span class="ml-2.5 font-mono text-slate-700">4 states: {A}, {B}, {C}, and Trap</span>
-              </label>
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q8" value="1 state: All states merge because they process identical symbols" required class="text-blue-600" />
-                <span class="ml-2.5 text-slate-700">1 state: All states merge because they process identical symbols</span>
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <!-- PART C: FAR-TRANSFER & STRUCTURAL GENERALIZATION (DIAGNOSTIC MCQS) -->
-        <div class="space-y-6">
-          <div class="bg-slate-900 text-white p-3 rounded-lg flex justify-between items-center">
-            <h3 class="text-sm font-bold uppercase tracking-wider">Part C: Far-Transfer & Structural Generalization</h3>
-            <span class="text-xs text-slate-300">System Optimization MCQs</span>
-          </div>
-
-          <!-- Question 6.9 (Q9) -->
-          <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
-            <p class="font-medium text-slate-900 text-sm">
-              <strong>Q9 (Equivalence Under Application Semantics):</strong> An embedded protocol parser has two distinct accept states: $S_{\text{HTTP\_OK}}$ (emits 200) and $S_{\text{WS\_OK}}$ (emits 101). Both states loop back to themselves on any character in $\Sigma$, and neither has transitions to other states. The backend security policy treats both codes identically. Can these two states be merged during Moore state minimization? <span class="text-red-500">*</span>
-            </p>
-            <div class="space-y-2 text-sm">
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q9" value="No. Because application-level meaning differs, formal language equivalence forbids state collapse." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">No. Because application-level meaning differs, formal language equivalence forbids state collapse.</span>
-              </label>
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q9" value="No. Two accept states can only merge if an explicit bidirectional ε-transition exists between them." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">No. Two accept states can only merge if an explicit bidirectional $\varepsilon$-transition exists between them.</span>
-              </label>
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q9" value="Yes. Both belong to the same accepting block in P0 and produce identical infinite transition signatures within that block." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">Yes. Both belong to the same accepting block in $P_0$ and produce identical infinite transition signatures within that block.</span>
-              </label>
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q9" value="Yes, but only if the alphabet Σ contains fewer than 4 input symbols." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">Yes, but only if the alphabet $\Sigma$ contains fewer than 4 input symbols.</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Question 6.10 (Q10) -->
-          <div class="p-5 border border-slate-200 rounded-xl space-y-3 bg-white">
-            <p class="font-medium text-slate-900 text-sm">
-              <strong>Q10 (Microcontroller Memory Architecture):</strong> An engineer implements a DFA parser on an 8-bit microcontroller using a flat transition matrix array $(\text{State} \times \text{Symbol})$. What is the exact memory footprint reduction when minimizing a DFA from 5 states to 3 states over an alphabet $|\Sigma| = 4$? <span class="text-red-500">*</span>
-            </p>
-            <div class="space-y-2 text-sm">
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q10" value="It eliminates exactly 8 transition entries in the lookup array (a 40% memory reduction)." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">It eliminates exactly 8 transition entries in the lookup array (a 40% memory reduction).</span>
-              </label>
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q10" value="It saves 2 bytes of RAM, because each eliminated state only corresponds to 1 bit of storage." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">It saves 2 bytes of RAM, because each eliminated state only corresponds to 1 bit of storage.</span>
-              </label>
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q10" value="It reduces execution speed by half due to CPU branch prediction stalls on condensed states." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">It reduces execution speed by half due to CPU branch prediction stalls on condensed states.</span>
-              </label>
-              <label class="flex items-start p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="post_q10" value="It yields zero memory benefit because embedded compilers enforce 64-bit alignment." required class="mt-1 text-blue-600" />
-                <span class="ml-2.5 text-slate-700">It yields zero memory benefit because embedded compilers enforce 64-bit alignment.</span>
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <!-- PART D: GENERATIVE NEAR-TRANSFER TASK (CONSTRUCTED PROCEDURAL EXECUTION) -->
-        <div class="space-y-6">
-          <div class="bg-slate-900 text-white p-3 rounded-lg flex justify-between items-center">
-            <h3 class="text-sm font-bold uppercase tracking-wider">Part D: Generative Near-Transfer Task (6.0 Points)</h3>
-            <span class="text-xs text-slate-300">Constructed Execution</span>
-          </div>
-
-          <!-- Task G1 Description Box -->
-          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-sm space-y-2">
-            <p class="font-bold text-slate-900">TASK G1 SPECIFICATION:</p>
-            <p class="text-xs text-slate-700">
-              Consider an NFA $M = (Q, \Sigma, \delta, q_0, F)$ defined by:
-            </p>
-            <div class="font-mono text-xs bg-white p-3 rounded border border-slate-200 text-slate-800 space-y-1">
-              <p>&bull; <strong>States:</strong> $Q = \{1, 2, 3\}$ &bull; <strong>Alphabet:</strong> $\Sigma = \{a, b\}$ &bull; <strong>Start:</strong> $1$ &bull; <strong>Accept:</strong> $F = \{3\}$</p>
-              <p>&bull; $\delta(1, a) = \{1\}$ ; $\delta(1, \varepsilon) = \{2\}$</p>
-              <p>&bull; $\delta(2, b) = \{2, 3\}$ ; $\delta(2, a) = \emptyset$</p>
-              <p>&bull; $\delta(3, a) = \{3\}$ ; $\delta(3, b) = \emptyset$ ; $\delta(3, \varepsilon) = \emptyset$ boundary</p>
-            </div>
-          </div>
-
-          <!-- G1.1 -->
-          <div>
-            <label class="block text-sm font-semibold text-slate-800 mb-1.5">
-              Question 6.11 (G1.1): Determine the formal initial state $S_0$ of the equivalent DFA. Show your explicit $\varepsilon$-closure calculation. <span class="text-red-500">*</span>
-            </label>
-            <textarea name="post_g1_1" rows="3" required placeholder="Write your step-by-step closure derivation here..."
-              class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 font-mono"></textarea>
-          </div>
-
-          <!-- G1.2 -->
-          <div>
-            <label class="block text-sm font-semibold text-slate-800 mb-1.5">
-              Question 6.12 (G1.2): Construct the complete Transition Table for the resulting DFA. For every generated state $S$, explicitly show: $\text{Move}(S, \sigma)$ and $\text{E-set}(\text{Move}(S, \sigma))$ for both $\sigma \in \{a, b\}$. Include Trap if applicable. <span class="text-red-500">*</span>
-            </label>
-            <textarea name="post_g1_2" rows="6" required placeholder="State | Move(S, a) | E-set | Move(S, b) | E-set..."
-              class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 font-mono"></textarea>
-          </div>
-
-          <!-- G1.3 -->
-          <div>
-            <label class="block text-sm font-semibold text-slate-800 mb-1.5">
-              Question 6.13 (G1.3): Specify the resulting DFA 5-tuple $M' = (Q', \Sigma, \delta', q_0', F')$. Explicitly list all states in $Q'$ and designate all accept states in $F'$. <span class="text-red-500">*</span>
-            </label>
-            <textarea name="post_g1_3" rows="4" required placeholder="Specify Q', Sigma, delta', q0', F'..."
-              class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 font-mono"></textarea>
-          </div>
-        </div>
-
-        <!-- PART E: GENERATIVE FAR-TRANSFER TASK (CRITICAL REASONING & COUNTER-EXAMPLE) -->
-        <div class="space-y-6">
-          <div class="bg-slate-900 text-white p-3 rounded-lg flex justify-between items-center">
-            <h3 class="text-sm font-bold uppercase tracking-wider">Part E: Generative Far-Transfer Task (6.0 Points)</h3>
-            <span class="text-xs text-slate-300">Critical Reasoning</span>
-          </div>
-
-          <!-- Task G2 Description Box -->
-          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-sm space-y-2">
-            <p class="font-bold text-slate-900">TASK G2 HEURISTIC PROPOSAL:</p>
-            <blockquote class="italic text-xs bg-white p-3 rounded border border-slate-200 text-slate-700">
-              "If two accepting states $S_x$ and $S_y$ have the exact same number of incoming transitions, and neither has an outgoing transition on character 'b', they are guaranteed to be equivalent and can be collapsed immediately without running full partition refinement."
-            </blockquote>
-          </div>
-
-          <!-- G2.1 -->
-          <div>
-            <label class="block text-sm font-semibold text-slate-800 mb-1.5">
-              Question 6.14 (G2.1): Is this heuristic mathematically valid in general? If NOT, construct a concrete formal counter-example (provide a state transition diagram or transition table with states $S_x$ and $S_y$ satisfying the engineer's conditions that clearly recognize different languages). <span class="text-red-500">*</span>
-            </label>
-            <textarea name="post_g2_1" rows="5" required placeholder="Evaluate validity and construct formal counter-example..."
-              class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 font-sans"></textarea>
-          </div>
-
-          <!-- G2.2 -->
-          <div>
-            <label class="block text-sm font-semibold text-slate-800 mb-1.5">
-              Question 6.15 (G2.2): Explain how the Equivalence Partitioning algorithm (Hopcroft/Moore) systematically avoids this error by focusing on future forward distinguishability rather than backward incoming edge counts. <span class="text-red-500">*</span>
-            </label>
-            <textarea name="post_g2_2" rows="4" required placeholder="Explain forward distinguishability vs backward edge counts..."
-              class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 font-sans"></textarea>
-          </div>
-        </div>
-
-        <!-- PART F: MULTIMEDIA DESIGN & USABILITY FEEDBACK -->
-        <div class="space-y-6">
-          <div class="bg-slate-900 text-white p-3 rounded-lg flex justify-between items-center">
-            <h3 class="text-sm font-bold uppercase tracking-wider">Part F: Multimedia Design & Usability Feedback</h3>
-            <span class="text-xs text-slate-300">Optional for static group</span>
-          </div>
-
-          <!-- Question 6.16 -->
-          <div>
-            <label class="block text-sm font-semibold text-slate-800 mb-2">
-              Question 6.16: For Interactive App participants: Which visual feature contributed most to your understanding?
-            </label>
-            <div class="space-y-2 text-sm">
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="usability_feature" value="The side-by-side Visual Pipeline (Original NFA -> Converted DFA -> Minimized DFA)" class="text-blue-600" />
-                <span class="ml-2.5 text-slate-700">The side-by-side Visual Pipeline (Original NFA $\to$ Converted DFA $\to$ Minimized DFA)</span>
-              </label>
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="usability_feature" value="The collapsible step-by-step mathematical breakdown tables" class="text-blue-600" />
-                <span class="ml-2.5 text-slate-700">The collapsible step-by-step mathematical breakdown tables</span>
-              </label>
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="usability_feature" value="The interactive String Trace Simulator with real-time state highlighting" class="text-blue-600" />
-                <span class="ml-2.5 text-slate-700">The interactive String Trace Simulator with real-time state highlighting</span>
-              </label>
-              <label class="flex items-center p-3 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
-                <input type="radio" name="usability_feature" value="Not applicable (I was in the static PDF group)" class="text-blue-600" />
-                <span class="ml-2.5 text-slate-500 italic">Not applicable (I was in the static PDF group)</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Question 6.17 -->
-          <div>
-            <label class="block text-sm font-semibold text-slate-800 mb-2">
-              Question 6.17: Open Feedback: Which aspect of the presentation was least intuitive or most difficult to navigate, and what specific improvement would best support your learning?
-            </label>
-            <textarea name="usability_open_feedback" rows="3" placeholder="Provide constructive feedback or interface suggestions..."
-              class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 font-sans"></textarea>
-          </div>
-        </div>
-
-        <!-- Submission Trigger -->
         <div class="pt-6 border-t border-slate-200">
           <button type="submit" id="submitBtn"
-            class="w-full py-4 px-6 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold text-base rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2">
-            <span id="btnText">Submit Comprehensive Research Assessment</span>
+            class="w-full py-4 px-6 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold text-base rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2">
+            <span id="btnText">Submit Pre-Session Diagnostic</span>
             <svg id="spinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
               <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
           </button>
-          
           <div id="statusAlert" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
         </div>
       </section>
     </form>
   </div>
 
-  <!-- Client-Side Engine: Dynamic Scales, Integrity Tracking, and Inline Validation -->
   <script>
-    /**
-     /
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx6fWoDl2uF-2itB3JazRSw2GIH7qF87XEQhV0pUhKEfCq15BRjSgsZVqHVlX9AXAKY/exec";
+    // URL of Google Apps Script Web App for Pre-Session
+    const PRE_SESSION_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxz-piFQnXlFZo7kEPKjwC9Fj2dkFm-3Z7UTNfTsBHoe0VaClwuqe2D4bpKTIbvtsy6/exec";
 
-    const startTime = Date.now();
+    const sessionStartTime = Date.now();
 
-    // 1. Toast Notification Helper (Compliant alternative to window.alert)
     function showToast(message, isError = true) {
       const toast = document.getElementById("toastNotification");
       const box = document.getElementById("toastBox");
@@ -1171,108 +473,72 @@
       }
 
       toast.classList.remove("hidden");
-      setTimeout(() => {
-        hideToast();
-      }, 6000);
+      setTimeout(() => hideToast(), 6000);
     }
 
     function hideToast() {
       document.getElementById("toastNotification").classList.add("hidden");
     }
 
-    // 2. Participant ID & Hardware Token Tracking
+    // Auto-generate immutable ID and track device environment
     (function initParticipantTracking() {
       document.getElementById('user_agent').value = navigator.userAgent;
       document.getElementById('screen_resolution').value = `${window.screen.width}x${window.screen.height}`;
+      document.getElementById('client_timezone').value = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
 
       const urlParams = new URLSearchParams(window.location.search);
       const urlPid = urlParams.get('pid') || urlParams.get('id');
-
       let pid = urlPid;
+
       if (!pid) {
-        pid = localStorage.getItem("automata_survey_pid");
+        pid = localStorage.getItem("sze_automata_research_pid");
         if (!pid) {
-          const randHex = () => Math.random().toString(16).substring(2, 6).toUpperCase();
+          const randHex = () => {
+            const arr = new Uint8Array(3);
+            window.crypto.getRandomValues(arr);
+            return Array.from(arr, b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+          };
           pid = `SZE-${randHex()}`;
-          localStorage.setItem("automata_survey_pid", pid);
+          localStorage.setItem("sze_automata_research_pid", pid);
         }
       } else {
-        localStorage.setItem("automata_survey_pid", pid);
+        localStorage.setItem("sze_automata_research_pid", pid);
       }
 
-      document.getElementById("participant_id").value = pid;
+      const pidInput = document.getElementById("participant_id");
+      pidInput.value = pid;
 
-      // Async IP verification
+      // IP verification
       fetch("https://api.ipify.org?format=json")
         .then(res => res.json())
         .then(data => {
           document.getElementById("ip_address").value = data.ip;
-          const badge = document.getElementById("ipBadge");
-          badge.textContent = `${data.ip} (Verified)`;
-          badge.className = "text-emerald-400";
+          document.getElementById("networkStatusBadge").textContent = `Verified (${data.ip})`;
         })
         .catch(() => {
-          document.getElementById("ip_address").value = "direct_client_guarded";
-          const badge = document.getElementById("ipBadge");
-          badge.textContent = "Protected Client";
-          badge.className = "text-slate-400";
+          document.getElementById("ip_address").value = "direct_client";
+          document.getElementById("networkStatusBadge").textContent = "Terminal Verified";
         });
     })();
 
-    // 3. Dynamic Likert Scale Generator (0-10 & 1-7) & Progress Updating
+    // Progress updates
     document.addEventListener("DOMContentLoaded", () => {
-      // 0 to 10 Scales (Section 4)
-      document.querySelectorAll('[data-scale="10"]').forEach(container => {
-        const name = container.getAttribute("data-name");
-        for (let i = 0; i <= 10; i++) {
-          const wrapper = document.createElement("label");
-          wrapper.className = "flex-1 min-w-[30px] text-center cursor-pointer";
-          wrapper.innerHTML = `
-            <input type="radio" name="${name}" value="${i}" required class="sr-only peer" />
-            <div class="py-2 px-1 text-xs font-semibold rounded-lg border border-slate-200 text-slate-600 transition-all peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-100">
-              ${i}
-            </div>
-          `;
-          container.appendChild(wrapper);
-        }
-      });
-
-      // 1 to 7 Scales (Section 5)
-      document.querySelectorAll('[data-scale="7"]').forEach(container => {
-        const name = container.getAttribute("data-name");
-        for (let i = 1; i <= 7; i++) {
-          const wrapper = document.createElement("label");
-          wrapper.className = "flex-1 min-w-[36px] text-center cursor-pointer";
-          wrapper.innerHTML = `
-            <input type="radio" name="${name}" value="${i}" required class="sr-only peer" />
-            <div class="py-2 px-1 text-xs font-semibold rounded-lg border border-slate-200 text-slate-600 transition-all peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-100">
-              ${i}
-            </div>
-          `;
-          container.appendChild(wrapper);
-        }
-      });
-
-      // Track completion percentage dynamically
-      const form = document.getElementById("surveyForm");
+      const form = document.getElementById("preSurveyForm");
       form.addEventListener("change", updateCompletionProgress);
       form.addEventListener("input", updateCompletionProgress);
       updateCompletionProgress();
     });
 
-    // 4. Progress calculation
     function updateCompletionProgress() {
-      const requiredInputs = document.querySelectorAll("#surveyForm input[required], #surveyForm textarea[required]");
+      const requiredInputs = document.querySelectorAll("#preSurveyForm input[required]");
       const checkedGroups = new Set();
       let answeredCount = 0;
 
-      // Group radio names
       requiredInputs.forEach(input => {
         if (input.type === "radio") {
           if (!checkedGroups.has(input.name)) {
             checkedGroups.add(input.name);
-            const isChecked = document.querySelector(`input[name="${input.name}"]:checked`);
-            if (isChecked) answeredCount++;
+            if (document.querySelector(`input[name="${input.name}"]:checked`)) answeredCount++;
           }
         } else if (input.type === "checkbox") {
           if (input.checked) answeredCount++;
@@ -1281,62 +547,47 @@
         }
       });
 
-      // Total unique questions required
-      const totalRequiredUnits = (requiredInputs.length - document.querySelectorAll("#surveyForm input[type='radio'][required]").length) + checkedGroups.size;
+      const totalRequiredUnits = (requiredInputs.length - document.querySelectorAll("#preSurveyForm input[type='radio'][required]").length) + checkedGroups.size;
       const pct = Math.min(100, Math.round((answeredCount / (totalRequiredUnits || 1)) * 100));
 
       document.getElementById("progressBar").style.width = `${pct}%`;
       document.getElementById("progressPercentageLabel").textContent = `${pct}% (${answeredCount}/${totalRequiredUnits})`;
     }
 
-    // 5. Unified Whole-Form Validation & Smooth Scroll
     function validateEntireForm() {
-      const form = document.getElementById("surveyForm");
-      const requiredInputs = form.querySelectorAll("input[required], textarea[required]");
+      const form = document.getElementById("preSurveyForm");
+      const requiredInputs = form.querySelectorAll("input[required]");
 
       for (let input of requiredInputs) {
         if (input.type === "radio") {
           const radioGroup = form.querySelectorAll(`input[name="${input.name}"]`);
-          const isChecked = Array.from(radioGroup).some(r => r.checked);
-          if (!isChecked) {
+          if (!Array.from(radioGroup).some(r => r.checked)) {
             const card = input.closest("div") || input.parentElement;
             card.scrollIntoView({ behavior: "smooth", block: "center" });
             card.classList.add("ring-2", "ring-rose-400", "rounded-xl");
             setTimeout(() => card.classList.remove("ring-2", "ring-rose-400"), 4000);
-            showToast("Please provide an answer for the highlighted required question.");
+            showToast("Please provide an answer for the highlighted question.");
             return false;
           }
-        } else if (input.type === "checkbox") {
-          if (!input.checked) {
-            input.scrollIntoView({ behavior: "smooth", block: "center" });
-            showToast("Please confirm your voluntary informed consent to proceed.");
-            return false;
-          }
-        } else {
-          if (!input.value.trim()) {
+        } else if (input.type === "checkbox" && !input.checked) {
+          input.scrollIntoView({ behavior: "smooth", block: "center" });
+          showToast("Please confirm voluntary consent to participate.");
+          return false;
+        } else if (input.type === "number" && input.name === "age") {
+          const ageVal = parseInt(input.value, 10);
+          if (isNaN(ageVal) || ageVal < 17 || ageVal > 99) {
             input.scrollIntoView({ behavior: "smooth", block: "center" });
             input.focus();
-            input.classList.add("ring-2", "ring-rose-400");
-            setTimeout(() => input.classList.remove("ring-2", "ring-rose-400"), 4000);
-            showToast("Please fill in this required field.");
+            showToast("Age must be between 17 and 99.");
             return false;
-          }
-          if (input.type === "number" && input.name === "age") {
-            const ageVal = parseInt(input.value, 10);
-            if (isNaN(ageVal) || ageVal < 17 || ageVal > 99) {
-              input.scrollIntoView({ behavior: "smooth", block: "center" });
-              input.focus();
-              showToast("Age must be a numeric whole value between 17 and 99.");
-              return false;
-            }
           }
         }
       }
       return true;
     }
 
-    // 6. Final Form Submission
-    const form = document.getElementById("surveyForm");
+    // Form submission
+    const form = document.getElementById("preSurveyForm");
     const submitBtn = document.getElementById("submitBtn");
     const btnText = document.getElementById("btnText");
     const spinner = document.getElementById("spinner");
@@ -1344,61 +595,57 @@
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-
       if (!validateEntireForm()) return;
 
-      if (GOOGLE_SCRIPT_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE") {
+      if (PRE_SESSION_SCRIPT_URL === "YOUR_PRE_SESSION_APPS_SCRIPT_WEB_APP_URL_HERE") {
         statusAlert.className = "mt-4 p-4 rounded-xl text-sm font-medium bg-amber-50 text-amber-900 border border-amber-300";
-        statusAlert.innerHTML = "<strong>Configuration Notice:</strong> Replace <code>GOOGLE_SCRIPT_URL</code> in <code>index.html</code> with your deployed Google Apps Script Web App URL before production submission.";
+        statusAlert.innerHTML = "<strong>Notice:</strong> Please replace <code>PRE_SESSION_SCRIPT_URL</code> in this file with your deployed Google Apps Script URL for Sheet 1.";
         statusAlert.classList.remove("hidden");
-        showToast("Configuration required: GOOGLE_SCRIPT_URL placeholder detected.");
+        showToast("Setup note: Insert PRE_SESSION_SCRIPT_URL.");
         return;
       }
 
-      // Record total elapsed seconds
-      const elapsedSeconds = Math.round((Date.now() - startTime) / 1000);
-      document.getElementById("time_on_page_seconds").value = elapsedSeconds;
-
+      document.getElementById("time_on_page_seconds").value = Math.round((Date.now() - sessionStartTime) / 1000);
       submitBtn.disabled = true;
-      btnText.textContent = "Securing and Logging Submission...";
+      btnText.textContent = "Recording Baseline Data...";
       spinner.classList.remove("hidden");
-      statusAlert.classList.add("hidden");
 
       const formData = new FormData(form);
       const payload = {};
-      formData.forEach((value, key) => {
-        payload[key] = value;
-      });
+      formData.forEach((value, key) => payload[key] = value);
 
       try {
-        await fetch(GOOGLE_SCRIPT_URL, {
+        await fetch(PRE_SESSION_SCRIPT_URL, {
           method: "POST",
           mode: "no-cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
 
-        statusAlert.className = "mt-4 p-5 rounded-xl text-sm font-medium bg-emerald-50 text-emerald-900 border border-emerald-300";
+        const currentPid = document.getElementById("participant_id").value;
+
+        statusAlert.className = "mt-4 p-5 rounded-xl text-sm font-medium bg-emerald-50 text-emerald-950 border border-emerald-300";
         statusAlert.innerHTML = `
-          <h4 class="font-bold text-base text-emerald-950 mb-1">Assessment Submitted Successfully</h4>
-          <p>Thank you for participating in this empirical study! Your responses have been recorded successfully and will contribute directly to research in multimedia computer science education.</p>
+          <h4 class="font-bold text-base text-emerald-900 mb-1">Pre-Session Diagnostic Completed Successfully</h4>
+          <p class="mb-2">Your baseline answers have been recorded.</p>
+          <div class="p-3 bg-white rounded-lg border border-emerald-200 font-mono text-sm">
+            Your Research ID: <strong class="text-blue-700 text-base select-all">${currentPid}</strong>
+          </div>
+          <p class="mt-2 text-xs text-slate-600">Please keep this ID handy. You may now proceed to your assigned instructional learning activity.</p>
         `;
         statusAlert.classList.remove("hidden");
-        showToast("Assessment submitted successfully!", false);
-
+        showToast("Diagnostic recorded successfully!", false);
         Array.from(form.elements).forEach(el => el.disabled = true);
         window.scrollTo({ top: 0, behavior: "smooth" });
 
       } catch (err) {
-        console.error("Submission failed:", err);
+        console.error(err);
         statusAlert.className = "mt-4 p-4 rounded-xl text-sm font-medium bg-rose-50 text-rose-900 border border-rose-300";
-        statusAlert.innerHTML = "<strong>Submission Error:</strong> Unable to log responses. Please verify your network connectivity and retry.";
+        statusAlert.innerHTML = "<strong>Network Error:</strong> Failed to record data. Check connection and retry.";
         statusAlert.classList.remove("hidden");
-        showToast("Submission failed. Please check network connection.");
+        showToast("Submission failed.");
         submitBtn.disabled = false;
-        btnText.textContent = "Submit Comprehensive Research Assessment";
+        btnText.textContent = "Submit Pre-Session Diagnostic";
       } finally {
         spinner.classList.add("hidden");
       }
