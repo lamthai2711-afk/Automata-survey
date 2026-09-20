@@ -101,9 +101,7 @@
       <input type="hidden" name="assigned_condition" id="assigned_condition" value="standard" />
       <input type="hidden" name="client_timezone" id="client_timezone" value="" />
 
-      <!-- ========================================================================= -->
-      <!-- SECTION 1: INFORMED CONSENT & DEMOGRAPHIC INFORMATION                      -->
-      <!-- ========================================================================= -->
+      <!-- SECTION 1: INFORMED CONSENT & DEMOGRAPHIC INFORMATION -->
       <section class="survey-section space-y-8 scroll-mt-20" id="section-1">
         <div class="border-b border-slate-200 pb-4">
           <div class="inline-block text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded mb-2">
@@ -133,7 +131,7 @@
             </div>
           </div>
           <div class="p-3 bg-blue-50/70 border border-blue-100 rounded-lg text-xs text-blue-900">
-            <strong>5. Strict Anonymity (GDPR):</strong> No Personally Identifiable Information (names, student IDs, or emails) is stored. All records are indexed solely via an anonymous research code.
+            <strong>5. Strict Anonymity (GDPR):</strong> All scientific records are indexed via an anonymous research code. Secondary identifiers (Neptun/Name) are solely used for instructor matching and grade attribution.
           </div>
 
           <div class="pt-3 border-t border-slate-200">
@@ -147,28 +145,46 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Identity Metrics: ID, Neptun Code, and Name -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
             <label class="block text-sm font-semibold text-slate-800 mb-1 flex items-center justify-between">
-              <span>Question 1.1: Assigned Participant ID <span class="text-red-500">*</span></span>
+              <span>Participant ID <span class="text-red-500">*</span></span>
               <span class="text-xs font-normal text-emerald-600 font-mono">🔒 Auto-Locked</span>
             </label>
             <div class="relative">
               <input type="text" name="participant_id" id="participant_id" readonly required
-                class="w-full px-4 py-2.5 rounded-lg border border-slate-300 font-mono text-sm font-bold text-slate-700 bg-slate-100 cursor-not-allowed select-all focus:outline-none" />
-              <span class="absolute right-3 top-2.5 text-xs bg-slate-200 text-slate-600 px-2 py-0.5 rounded font-mono">System Assigned</span>
+                class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 font-mono text-sm font-bold text-slate-700 bg-slate-100 cursor-not-allowed select-all focus:outline-none" />
             </div>
-            <p class="text-xs text-slate-500 mt-1">Keep note of this ID; it will connect your pre and post assessment responses.</p>
+            <p class="text-xs text-slate-500 mt-1">Unique anonymous research token.</p>
           </div>
 
           <div>
             <label class="block text-sm font-semibold text-slate-800 mb-1">
-              Question 1.2: Age (in whole years) <span class="text-red-500">*</span>
+              Neptun Code (Fallback ID)
             </label>
-            <input type="number" name="age" id="age" min="17" max="99" required placeholder="Enter age (17 - 99)"
-              class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white" />
-            <p class="text-xs text-slate-500 mt-1">Chronological age as a numeric whole value.</p>
+            <input type="text" name="neptun_code" id="neptun_code" maxlength="8" placeholder="e.g., ABC123"
+              class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 font-mono text-sm uppercase font-semibold text-slate-800 bg-white focus:ring-2 focus:ring-blue-500" />
+            <p class="text-xs text-slate-500 mt-1">Backup identifier to link session phases.</p>
           </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-slate-800 mb-1">
+              Full Name (Optional)
+            </label>
+            <input type="text" name="student_name" id="student_name" placeholder="e.g., Kovács Péter"
+              class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm font-semibold text-slate-800 bg-white focus:ring-2 focus:ring-blue-500" />
+            <p class="text-xs text-slate-500 mt-1">For instructor bonus point verification.</p>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-slate-800 mb-1">
+            Question 1.2: Age (in whole years) <span class="text-red-500">*</span>
+          </label>
+          <input type="number" name="age" id="age" min="17" max="99" required placeholder="Enter age (17 - 99)"
+            class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white" />
+          <p class="text-xs text-slate-500 mt-1">Chronological age as a numeric whole value.</p>
         </div>
 
         <div>
@@ -293,9 +309,7 @@
         </div>
       </section>
 
-      <!-- ========================================================================= -->
-      <!-- SECTION 2: BASELINE KNOWLEDGE PRE-TEST                                    -->
-      <!-- ========================================================================= -->
+      <!-- SECTION 2: BASELINE KNOWLEDGE PRE-TEST -->
       <section class="survey-section space-y-8 pt-8 border-t-2 border-slate-200 scroll-mt-20" id="section-2">
         <div class="border-b border-slate-200 pb-4">
           <div class="inline-block text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded mb-2">
@@ -453,7 +467,7 @@
 
   <script>
     // URL of Google Apps Script Web App for Pre-Session
-    const PRE_SESSION_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyDcqG5IK2j9ccGN1O7PDr8c3MUxsQ9Nk8I9hRK0zEDXrShu07Bu6QZ3dr_ew2osusr/exec";
+    const PRE_SESSION_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx3zfz5B-dwZjAH1duifmlMdcmJ0kTdAr7X0WjnkK3NxHRqg5gPmaTY_XHmTSnXovjsnA/exec";
 
     const sessionStartTime = Date.now();
 
@@ -507,6 +521,22 @@
 
       const pidInput = document.getElementById("participant_id");
       pidInput.value = pid;
+
+      // Persist Neptun Code and Student Name for automatic carry-over to Post-Session
+      const neptunInput = document.getElementById("neptun_code");
+      const nameInput = document.getElementById("student_name");
+
+      const savedNeptun = localStorage.getItem("sze_automata_neptun");
+      if (savedNeptun && !neptunInput.value) neptunInput.value = savedNeptun;
+      const savedName = localStorage.getItem("sze_automata_student_name");
+      if (savedName && !nameInput.value) nameInput.value = savedName;
+
+      neptunInput.addEventListener("input", (e) => {
+        localStorage.setItem("sze_automata_neptun", e.target.value.trim().toUpperCase());
+      });
+      nameInput.addEventListener("input", (e) => {
+        localStorage.setItem("sze_automata_student_name", e.target.value.trim());
+      });
 
       // IP verification
       fetch("https://api.ipify.org?format=json")
@@ -618,7 +648,7 @@
         await fetch(PRE_SESSION_SCRIPT_URL, {
           method: "POST",
           mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify(payload),
         });
 
